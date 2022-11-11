@@ -1,11 +1,11 @@
 public abstract class Players {
-    String name;
-    int playerHealth;
-    int playerMana;
-    int maxHealth;
-    int maxMana;
-    int speed;
-    int armorClass;
+    private String name;
+    private int playerHealth;
+    private int playerMana;
+    private int maxHealth;
+    private int maxMana;
+    private int speed;
+    private int armorClass;
     Weapons myWeapon;
     public Players (int health,int mana,int speed,int armor,String typeOfWeapon,int strengthOfWeapon,String name){
         playerHealth = health;
