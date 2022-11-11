@@ -1,4 +1,5 @@
 public abstract class Players {
+    String name;
     int playerHealth;
     int playerMana;
     int maxHealth;
@@ -6,14 +7,15 @@ public abstract class Players {
     int speed;
     int armorClass;
     Weapons myWeapon;
-    public Players (int health,int mana,int speed,int armor,String typeOfWeapon,int strengthOfWeapon){
+    public Players (int health,int mana,int speed,int armor,String typeOfWeapon,int strengthOfWeapon,String name){
         playerHealth = health;
-        playerMana = health;
+        playerMana = mana;
         maxHealth = health;
-        maxMana = health;
+        maxMana = mana;
         this.speed = speed;
         armorClass = armor;
         myWeapon = new Weapons(typeOfWeapon,strengthOfWeapon);
+        this.name = name;
     }
 
     public void updateHealth(int value){
