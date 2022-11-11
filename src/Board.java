@@ -4,6 +4,13 @@ public class Board {
     private ArrayList<Players> players = new ArrayList<Players>();
     private ArrayList<Enemies> enemies = new ArrayList<Enemies>();
 
+    public void printPlayers(){
+        System.out.println(players);
+    }
+
+    public void printEnemies(){
+        System.out.println(enemies);
+    }
     public void addPlayer(Players player){
         players.add(player);
     }
