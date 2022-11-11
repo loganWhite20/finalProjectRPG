@@ -44,8 +44,6 @@ public abstract class Players {
 
     abstract void restoreHealth(int dieRoll);
 
-    //public void criticalChance(){}
-
     public boolean equals(Object c){
         if (this==c){
             return true;
