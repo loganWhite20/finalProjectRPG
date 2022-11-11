@@ -6,7 +6,7 @@ public abstract class Players {
     private int maxMana;
     private int speed;
     private int armorClass;
-    Weapons myWeapon;
+    private Weapons myWeapon;
     public Players (int health,int mana,int speed,int armor,String typeOfWeapon,int strengthOfWeapon,String name){
         playerHealth = health;
         playerMana = mana;
