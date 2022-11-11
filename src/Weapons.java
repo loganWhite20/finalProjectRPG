@@ -1,9 +1,13 @@
 public class Weapons {
-    String weaponType;
-    int weaponStrength;
-    public Weapons (String type,int strength){
+    private String weaponType;
+    private int weaponStrength;
+    private Dice dmgDie;
+    private int dmgModifier;
+    public Weapons (String type,int strength,int numSidesForDice){
         weaponType = type;
         weaponStrength = strength;
+        dmgDie = new Dice(numSidesForDice);
+
     }
 
     public String getWeaponType(){

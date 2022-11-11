@@ -7,14 +7,14 @@ public abstract class Players {
     private int speed;
     private int armorClass;
     private Weapons myWeapon;
-    public Players (int health,int mana,int speed,int armor,String typeOfWeapon,int strengthOfWeapon,String name){
+    public Players (int health,int mana,int speed,int armor,String typeOfWeapon,int strengthOfWeapon,String name,int numSidesForDice){
         playerHealth = health;
         playerMana = mana;
         maxHealth = health;
         maxMana = mana;
         this.speed = speed;
         armorClass = armor;
-        myWeapon = new Weapons(typeOfWeapon,strengthOfWeapon);
+        myWeapon = new Weapons(typeOfWeapon,strengthOfWeapon,numSidesForDice);
         this.name = name;
     }
 
