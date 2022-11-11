@@ -8,5 +8,8 @@ public class Enemies extends Players {
     int attack(int dieRoll) {
         return 0;
     }
+    public Enemies(Enemies e){
+        super(e);
+    }
 }
 
