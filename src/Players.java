@@ -77,12 +77,6 @@ public abstract class Players {
     }
 
     /**
-     * Abstract method that allows a character to restore health
-     * @param dieRoll - the die roll which determines how much health will be restored
-     */
-    abstract void restoreHealth(int dieRoll);
-
-    /**
      * Equals method for comparing to players to see if they are equal
      * @param c - the object you are trying to compare
      * @return - whether the object in the parameter and the current player are equal

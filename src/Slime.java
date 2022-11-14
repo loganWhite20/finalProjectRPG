@@ -20,7 +20,6 @@ public class Slime extends Players{
      * The amount of health that is restored is based off of a die roll
      * @param dieRoll - the die roll value which determines how much health is restored
      */
-    @Override
     void restoreHealth(int dieRoll) {
         if(dieRoll<20){
             int max = getMaxHealth();
