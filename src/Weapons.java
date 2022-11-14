@@ -7,7 +7,12 @@ public class Weapons {
         weaponType = type;
         weaponStrength = strength;
         dmgDie = new Dice(numSidesForDice);
+    }
 
+    public Weapons (Weapons w) {
+        this.weaponType = w.weaponType;
+        this.weaponStrength = w.weaponStrength;
+        this.dmgDie = new Dice(w.dmgDie);
     }
 
     public String getWeaponType(){

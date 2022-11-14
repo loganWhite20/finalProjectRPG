@@ -7,6 +7,10 @@ public class Dice {
         this.sides = sides;
     }
 
+    public Dice(Dice d) {
+        this.sides = d.sides;
+    }
+
     public int rollDie(){
         Random randomNum = new Random();
         return randomNum.nextInt(sides);
