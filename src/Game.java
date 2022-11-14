@@ -25,11 +25,20 @@ public class Game extends Levels{
         }
     }
 
+    /**
+     * This method will run the actual combat itself. It will loop through a turn
+     * order and await for action from users and attack if it is an AI enemy.
+     */
     public void run() {
         System.out.println(storyPrompt);
 
     }
 
+    /**
+     * This method will set the turn order for combat. The run() function will run
+     * through the turnOrderSet to take players turns. Once a player is defeated, they
+     * will be removed from this set.
+     */
     public void setTurnOrder() {
         turnOrderSet = turnOrder.descendingKeySet();
     }
