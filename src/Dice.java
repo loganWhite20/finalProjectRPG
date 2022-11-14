@@ -18,7 +18,7 @@ public class Dice {
 
     /**
      * This method is what rolls the dice itself.
-     * @return a value of the die rolled.
+     * @return an integer value of the die rolled.
      */
     public int rollDie(){
         Random randomNum = new Random();
