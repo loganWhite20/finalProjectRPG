@@ -4,7 +4,7 @@ public abstract class Players {
     private int playerMana;
     private int maxHealth;
     private int maxMana;
-    private int speed;
+    protected int speed;
     private int armorClass;
     private Weapons myWeapon;
     public Players (int health,int mana,int speed,int armor,String typeOfWeapon,int strengthOfWeapon,String name,int numSidesForDice){
