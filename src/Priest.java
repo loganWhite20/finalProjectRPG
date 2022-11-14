@@ -1,6 +1,6 @@
 public class Priest extends Enemies {
-    public Priest(int health, int mana, int speed, int armor, String typeOfWeapon, int strengthOfWeapon,String name,int numSidesDice) {
-        super(health, mana, speed, armor, typeOfWeapon, strengthOfWeapon,name,numSidesDice);
+    public Priest(int health, int mana, int speed, int armor, String name,Weapons w) {
+        super(health, mana, speed, armor, w,name);
     }
     public int indHeal(int dieRoll){ return -1; }
     public int indMana(int dieRoll){ return -1; }

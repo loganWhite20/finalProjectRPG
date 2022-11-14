@@ -1,6 +1,6 @@
 public class Slime extends Players{
-    public Slime(int health,int mana,int speed,int armor,String typeOfWeapon,int strengthOfWeapon,String name,int numSidesDice){
-        super(health,mana,speed,armor,typeOfWeapon,strengthOfWeapon,name,numSidesDice);
+    public Slime(int health, int mana, int speed, int armor, String name,Weapons w) {
+        super(health, mana, speed, armor, w,name);
     }
     @Override
     void restoreHealth(int dieRoll) {
