@@ -1,6 +1,6 @@
 public class Enemies extends Players {
-    public Enemies (int health,int mana,int speed,int armor,String typeOfWeapon,int strengthOfWeapon,String name,int numSidesDice){
-        super(health,mana,speed,armor,typeOfWeapon,strengthOfWeapon,name,numSidesDice);
+    public Enemies (int health,int mana,int speed,int armor,Weapons w,String name){
+        super(health,mana,speed,armor,w,name);
     }
     @Override
     void restoreHealth(int dieRoll) {    }
