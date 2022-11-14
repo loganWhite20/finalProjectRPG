@@ -31,8 +31,17 @@ public class Game extends Levels{
      * order and await for action from users and attack if it is an AI enemy.
      */
     public void run() {
+        // TODO LOGAN WHITE & BEN ANASTASI
         System.out.println(storyPrompt);
+
+        /**
+         * This loop should go through the turn order and take
+         * a System.in input from users to take an action
+         */
         while(!gameFlag) {
+            for (Integer key: turnOrderSet){
+                turnOrder.get(key);
+            }
             gameFlag = true;
         }
     }

@@ -42,6 +42,15 @@ public class Journey {
      * @param filename
      */
     public void importLevels(String filename) {
+        // TODO COLTON MIDDAUGH
+    }
 
+    /**
+     * This method will be initialized after creating a Journey class.
+     * The method will give the first story prompt, then navigate through the levels here.
+     * The story is essentially handled here.
+     */
+    public void journeyLoop() {
+        // TODO CREATE METHOD LOGAN WHITE
     }
 }
