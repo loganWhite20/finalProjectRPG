@@ -35,4 +35,13 @@ public class Journey {
         Game level = new Game(listLevels.get(levelNumber-1));
         level.run();
     }
+
+    /**
+     * This method will import levels from a txt file that will be used
+     * in the journey.
+     * @param filename
+     */
+    public void importLevels(String filename) {
+
+    }
 }

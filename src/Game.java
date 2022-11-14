@@ -20,6 +20,7 @@ public class Game extends Levels{
         super(levelNumber);
         turnOrder = new TreeMap<>();
         turnOrderSet = new HashSet<>();
+        gameFlag = false;
         for (Enemies enemy: listEnemies) {
             turnOrder.put(enemy.speed, enemy);
         }
@@ -31,7 +32,9 @@ public class Game extends Levels{
      */
     public void run() {
         System.out.println(storyPrompt);
-
+        while(!gameFlag) {
+            gameFlag = true;
+        }
     }
 
     /**

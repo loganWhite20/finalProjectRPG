@@ -45,4 +45,14 @@ public class Weapons {
     public int getWeaponStrength(){
         return weaponStrength;
     }
+
+    /**
+     * This method rolls for dmg of a weapon.
+     * @return - int value for damage dealt.
+     */
+    public int rollForDamage() {
+        int dmg = dmgDie.rollDie();
+        dmg += weaponStrength;
+        return dmg;
+    }
 }
