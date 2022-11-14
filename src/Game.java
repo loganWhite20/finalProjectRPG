@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -9,6 +11,7 @@ import java.util.TreeMap;
  */
 public class Game extends Levels{
     private ArrayList<Players> listPlayers;
+    private Set<Integer> turnOrderSet;
     private TreeMap<Integer,Players> turnOrder;
     private boolean gameFlag;
 
@@ -16,6 +19,7 @@ public class Game extends Levels{
     public Game(Levels levelNumber) {
         super(levelNumber);
         turnOrder = new TreeMap<>();
+        turnOrderSet = new HashSet<>();
         for (Enemies enemy: listEnemies) {
             turnOrder.put(enemy.speed, enemy);
         }
@@ -27,6 +31,6 @@ public class Game extends Levels{
     }
 
     public void setTurnOrder() {
-        turnOrder = turnOrder.descendingKeySet();
+        turnOrderSet = turnOrder.descendingKeySet();
     }
 }
