@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+/**
+ * This class is designed to store a level for the RPG game. This class will have
+ * a prompt for the story in the game along with a list of enemies that will be loaded
+ * in to battle.
+ */
 public class Levels {
     protected String storyPrompt;
     protected ArrayList<Enemies> listEnemies;
