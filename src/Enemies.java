@@ -17,12 +17,22 @@ public class Enemies extends Players {
 
     /**
      * Attack method for enemy characters
-     * @param dieRoll - die roll which determines how much damage the attack deals
      * @return - the amount of damage dealt
      */
     @Override
-    int attack(int dieRoll) {
+    int attack() {
         return 0;
+    }
+
+    public int criticalHit(int diceRoll) {
+        int damage;
+        if(diceRoll>=15){
+            damage = attack()*2;
+        }
+        else {
+            damage = attack();
+        }
+        return damage;
     }
 
     /**

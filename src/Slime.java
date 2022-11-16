@@ -38,28 +38,35 @@ public class Slime extends Players{
 
     /**
      * This method is the basic attack for the Slime
-     * @param dieRoll - die roll which determines how much damage is dealt
      * @return - the amount of damage dealt by the attack
      */
     @Override
-    int attack(int dieRoll) {
-        if(dieRoll<20){
-            return 0;
-        } else if(dieRoll <15){
-            return 0;
-        } else if(dieRoll<10 && dieRoll>4){
-            return 0;
-        } else {
-            return 0;
+    int attack() {
+        return this.returnWeapon().rollForDamage();
+    }
+
+    public int criticalHit(int diceRoll, int typeOfAttack) {
+        int damage;
+        if(diceRoll>=15 && typeOfAttack==1){
+            damage = attack()*2;
         }
+        else if(diceRoll>=15 && typeOfAttack==2){
+            damage = specialAttack()*2;
+        }
+        else if (diceRoll<15 && typeOfAttack==2){
+            damage = specialAttack();
+        }
+        else {
+            damage = attack();
+        }
+        return damage;
     }
 
     /**
      * This method is the special attack for the Slime which deals more than the basic attack
-     * @param dieRoll - the die roll which determines the strength of the attack
      * @return - the damage dealt by the special attack
      */
-    int specialAttack(int dieRoll){ return -1;}
+    int specialAttack(){ return (int) ((this.returnWeapon().rollForDamage())*1.5); }
 
     /**
      * This method overrides the equals method for the Slime class

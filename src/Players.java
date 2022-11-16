@@ -73,7 +73,7 @@ public abstract class Players {
      * @param amountOfDamage - the amount of damage a player is taking
      */
     public void takeDamage(int amountOfDamage){//need to figure out what to do when the players health equals zero
-        playerHealth = playerHealth-amountOfDamage;
+        playerHealth -= amountOfDamage;
     }
 
     /**
@@ -98,26 +98,16 @@ public abstract class Players {
     }
 
     /**
-     * Method for the base attack of a player
-     * @param dieRoll - die roll which determines how much damage the attack deals
-     * @return - the amount of damage dealt
+     * Returns the users current weapon
+     * @return - the users Weapon
      */
-    abstract int attack(int dieRoll);
-
-    /**
-     * Determines whether a player makes a critical hit when attacking another player
-     * @param diceRoll - the dice roll which determines if a critical hit is achieved
-     * @return - the amount of damage dealt
-     */
-    public int criticalHit(int diceRoll){
-        int attackVal;
-        if(diceRoll==20){
-            attackVal = (attack(diceRoll))*2;
-        } else {
-            attackVal = attack(diceRoll);
-        }
-        return attackVal;
+    public Weapons returnWeapon(){
+        return this.myWeapon;
     }
 
-
+    /**
+     * Method for the base attack of a player
+     * @return - the amount of damage dealt
+     */
+    abstract int attack();
 }

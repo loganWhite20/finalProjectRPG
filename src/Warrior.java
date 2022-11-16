@@ -17,10 +17,9 @@ public class Warrior extends Enemies {
 
     /**
      * This is the basic attack of the warrior
-     * @param dieRoll - the die roll which determines whether the attack will hit or not
      * @return - returns the amount of damage dealt
      */
-    public int attack (int dieRoll){ return -1; }
+    int attack (){ return this.returnWeapon().rollForDamage(); }
 
     /**
      * This method serves as a way for the Warrior to block an attack from the hero.
