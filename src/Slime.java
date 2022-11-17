@@ -45,6 +45,11 @@ public class Slime extends Players{
         return this.returnWeapon().rollForDamage();
     }
 
+    @Override
+    public String returnType() {
+        return "Slime";
+    }
+
     public int criticalHit(int diceRoll, int typeOfAttack) {
         int damage;
         if(diceRoll>=15 && typeOfAttack==1){

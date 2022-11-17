@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * This class is what the players will be interacting with in combat.
@@ -39,9 +36,32 @@ public class Game extends Levels{
          * a System.in input from users to take an action
          */
         while(!gameFlag) {
-            for (Integer key: turnOrderSet){
-                turnOrder.get(key);
-            }
+
+            //Ben - please excuse how messy this code is Logan, I'm kinda struggling with the best way
+            //to write all the logic for the turns. Please feel free to make as many edits as you see
+            //necessary
+
+//            for (Integer key: turnOrderSet){
+//                Players currentPlayer = turnOrder.get(key);
+//                if (currentPlayer.returnType().equals("Slime")){//turn for hero
+//                    Scanner scnr = new Scanner(System.in);
+//                    int damage;
+//                    int likelihood = (int) (Math.random() * (4 - 1 + 1) + 1);
+//                    if (likelihood==3){
+//                        System.out.println("Enter 1 for base attack. Enter 2 for special attack.");
+//                        int input = scnr.nextInt();
+//                        if(input==1){
+//                            damage = currentPlayer.attack();
+//                        } else {
+//                            //damage = currentPlayer.specialAttack();
+//                        }
+//                    } else {
+//
+//                    }
+//                } else {//turn for enemy
+//
+//                }
+//            }
             gameFlag = true;
         }
     }

@@ -27,4 +27,9 @@ public class Warrior extends Enemies {
      * @return - returns the amount of damage dealt
      */
     public boolean block (int dieRoll){ return false; }
+
+    @Override
+    String returnType() {
+        return "Warrior";
+    }
 }

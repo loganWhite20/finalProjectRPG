@@ -24,6 +24,11 @@ public class Enemies extends Players {
         return 0;
     }
 
+    @Override
+    String returnType() {
+        return "Enemies";
+    }
+
     public int criticalHit(int diceRoll) {
         int damage;
         if(diceRoll>=15){

@@ -111,5 +111,5 @@ public abstract class Players {
      */
     abstract int attack();
 
-    abstract Players returnType();
+    abstract String returnType();
 }
