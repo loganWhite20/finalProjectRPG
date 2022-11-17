@@ -1,4 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
 
 /**
  * This class holds the levels that the heroes will go through on a journey.
@@ -41,8 +45,27 @@ public class Journey {
      * in the journey.
      * @param filename
      */
-    public void importLevels(String filename) {
+    public void importLevels(String filename) throws FileNotFoundException {
         // TODO COLTON MIDDAUGH
+        File file = new File("Level1Test.txt");
+        Scanner scnr = new Scanner(file);
+        StringBuilder story = new StringBuilder();
+        while(!scnr.hasNextInt()){
+            story.append(scnr.nextLine()).append(" ");
+        }
+//        int numEnemies = scnr.nextInt();
+        int health = scnr.nextInt();
+        int mana = scnr.nextInt();
+        int speed = scnr.nextInt();
+        int armor = scnr.nextInt();
+        String name = scnr.next();
+        String weaponType = scnr.next();
+        int weaponStrength = scnr.nextInt();
+        int weaponDiceSides = scnr.nextInt();
+        Weapons testWeapon = new Weapons(weaponType,weaponStrength,weaponDiceSides);
+        Warrior enemy = new Warrior(health,mana,speed,armor,name, testWeapon);
+        Levels level1 = new Levels(String.valueOf(story), enemy);
+        listLevels.add(level1);
     }
 
     /**
