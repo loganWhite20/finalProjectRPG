@@ -110,4 +110,6 @@ public abstract class Players {
      * @return - the amount of damage dealt
      */
     abstract int attack();
+
+    abstract Players returnType();
 }
