@@ -7,7 +7,7 @@ public abstract class Players {
     private int playerMana;
     private int maxHealth;
     private int maxMana;
-    protected int speed;
+    private int speed;
     private int armorClass;
     private Weapons myWeapon;
 
@@ -112,4 +112,17 @@ public abstract class Players {
     abstract int attack();
 
     abstract String returnType();
+
+    public String getName() {
+        return name;
+    }
+    public int getMaxMana() {
+        return maxMana;
+    }
+    public int getSpeed() {
+        return speed;
+    }
+    public int getArmorClass() {
+        return armorClass;
+    }
 }

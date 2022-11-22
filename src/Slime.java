@@ -14,6 +14,9 @@ public class Slime extends Players{
     public Slime(int health, int mana, int speed, int armor, String name,Weapons w) {
         super(health, mana, speed, armor, w,name);
     }
+    public Slime(Slime other) {
+        super(other.getMaxHealth(),other.getMaxMana(),other.getSpeed(),other.getArmorClass(),new Weapons(other.returnWeapon()),other.getName());
+    }
 
     /**
      * This method determines if or how much the Slime character will restore health.

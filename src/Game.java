@@ -11,16 +11,23 @@ public class Game extends Levels{
     private Set<Integer> turnOrderSet;
     private TreeMap<Integer,Players> turnOrder;
     private boolean gameFlag;
+    private Slime SlimeHero;
+    private Dice hitDice;
 
     // Cosntructor
-    public Game(Levels levelNumber) {
+    public Game(Levels levelNumber, Slime user) {
         super(levelNumber);
         turnOrder = new TreeMap<>();
         turnOrderSet = new HashSet<>();
         gameFlag = false;
-        for (Enemies enemy: listEnemies) {
-            turnOrder.put(enemy.speed, enemy);
+        for (Enemies enemy: levelNumber.listEnemies) {
+            Enemies newEnemy = new Enemies(enemy);
+            turnOrder.put(enemy.getSpeed(),newEnemy);
+            listEnemies.add(newEnemy);
         }
+        SlimeHero = new Slime(user);
+        turnOrder.put(SlimeHero.getSpeed(), SlimeHero);
+        hitDice = new Dice(20);
     }
 
     /**
@@ -41,10 +48,54 @@ public class Game extends Levels{
             //to write all the logic for the turns. Please feel free to make as many edits as you see
             //necessary
 
-//            for (Integer key: turnOrderSet){
-//                Players currentPlayer = turnOrder.get(key);
-//                if (currentPlayer.returnType().equals("Slime")){//turn for hero
-//                    Scanner scnr = new Scanner(System.in);
+            for (Integer key: turnOrderSet){
+                Players currentPlayer = turnOrder.get(key);
+
+                // THIS IS THE SLIMES TURN
+                if (currentPlayer.returnType().equals("Slime")){//turn for hero
+                    Scanner scnr = new Scanner(System.in);
+                    System.out.println("Enter 1 for base attack. Enter 2 for special attack.");
+                    String input = scnr.next();
+                    while (!input.equals("1") || !input.equals("2")) {
+                        System.out.println("incorrect input.");
+                        System.out.println("Enter 1 for base attack. Enter 2 for special attack.");
+                        input = scnr.next();
+                    }
+                    int damage;
+                    if(input=="1"){
+                        damage = SlimeHero.attack();
+                    } else {
+                        damage = SlimeHero.specialAttack();
+                    }
+
+                    boolean intFlag = false;
+                    int in = 0;
+                    while (!intFlag == true) {
+                        try {
+                            System.out.println("Select who to attack");
+                            printListEnemies();
+                            in = scnr.nextInt()-1;
+                            if (!(in >= 0 && in < listEnemies.size())) {
+                                System.out.println("Illegal argument");
+                                throw new IllegalArgumentException();
+                            }
+                            intFlag = true;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Illegal argument.");
+                        }
+                    }
+                    int hitRoll = hitDice.rollDie();
+                    if (hitRoll>=listEnemies.get(in).getArmorClass()) {
+                        listEnemies.get(in).takeDamage(damage);
+                        System.out.println(listEnemies.get(in).getName() + " took " + damage + "damage");
+                        if (listEnemies.get(in).getPlayerHealth() <= 0) {
+                            System.out.println(listEnemies.get(in).getName() + " has been knocked out.");
+                            listEnemies.remove(in);
+                        }
+                    }
+                    else {
+                        System.out.println(SlimeHero.getName() + " missed.");
+                    }
 //                    int damage;
 //                    int likelihood = (int) (Math.random() * (4 - 1 + 1) + 1);
 //                    if (likelihood==3){
@@ -58,10 +109,10 @@ public class Game extends Levels{
 //                    } else {
 //
 //                    }
-//                } else {//turn for enemy
-//
-//                }
-//            }
+                } else {//turn for enemy
+
+                }
+            }
             gameFlag = true;
         }
     }
@@ -73,5 +124,15 @@ public class Game extends Levels{
      */
     public void setTurnOrder() {
         turnOrderSet = turnOrder.descendingKeySet();
+    }
+
+    /**
+     * This method will print out the names of each enemy.
+     */
+    public void printListEnemies() {
+        int i = 1;
+        for (Enemies e: listEnemies) {
+            System.out.println(i + ". " + e.getName());
+        }
     }
 }

@@ -12,9 +12,10 @@ public class Levels {
 
     // Constructor
     public Levels(String storyPrompt, Enemies enemy) {
-        listEnemies = new ArrayList<>();
+        listEnemies = new ArrayList<Enemies>();
         this.storyPrompt = storyPrompt;
-        listEnemies.add(new Enemies(enemy));
+        Enemies newEnemy = new Enemies(enemy);
+        listEnemies.add(newEnemy);
     }
     // Constructor
     public Levels(String storyPrompt, ArrayList<Enemies> other) {
