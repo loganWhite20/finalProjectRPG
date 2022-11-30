@@ -125,4 +125,6 @@ public abstract class Players {
     public int getArmorClass() {
         return armorClass;
     }
+    public abstract int criticalHit(int diceHit);
+    public abstract int specialAttack();
 }

@@ -47,5 +47,9 @@ public class Enemies extends Players {
     public Enemies(Enemies e){
         super(e);
     }
+
+    public int specialAttack() {
+        return 1;
+    }
 }
 
