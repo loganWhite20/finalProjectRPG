@@ -6,10 +6,10 @@ import java.util.*;
  * The class takes in ever players speeds and sorts the players in a turn
  * order where the players with the most speed goes first.
  */
-public class Game extends Levels{
+public class Game extends Levels {
     private ArrayList<Players> listPlayers;
     private Set<Integer> turnOrderSet;
-    private TreeMap<Integer,Players> turnOrder;
+    private TreeMap<Integer, Players> turnOrder;
     private boolean gameFlag;
     private Slime SlimeHero;
     private Dice hitDice;
@@ -20,9 +20,9 @@ public class Game extends Levels{
         turnOrder = new TreeMap<>();
         turnOrderSet = new HashSet<>();
         gameFlag = false;
-        for (Enemies enemy: levelNumber.listEnemies) {
+        for (Enemies enemy : levelNumber.listEnemies) {
             Enemies newEnemy = new Enemies(enemy);
-            turnOrder.put(enemy.getSpeed(),newEnemy);
+            turnOrder.put(enemy.getSpeed(), newEnemy);
             listEnemies.add(newEnemy);
         }
         SlimeHero = new Slime(user);
@@ -42,12 +42,12 @@ public class Game extends Levels{
          * This loop should go through the turn order and take
          * a System.in input from users to take an action
          */
-        while(!gameFlag) {
-            for (Integer key: turnOrderSet){
+        while (!gameFlag) {
+            System.out.println("Congrats, we are here");
+            for (Integer key : turnOrderSet) {
                 Players currentPlayer = turnOrder.get(key);
-
                 // THIS IS THE SLIMES TURN
-                if (currentPlayer.returnType().equals("Slime")){//turn for hero
+                if (currentPlayer.returnType().equals("Slime")) {//turn for hero
                     Scanner scnr = new Scanner(System.in);
                     System.out.println("Enter 1 for base attack. Enter 2 for special attack.");
                     String input = scnr.next();
@@ -57,7 +57,7 @@ public class Game extends Levels{
                         input = scnr.next();
                     }
                     int damage;
-                    if(input=="1"){
+                    if (input == "1") {
                         damage = SlimeHero.attack();
                     } else {
                         damage = SlimeHero.specialAttack();
@@ -69,7 +69,7 @@ public class Game extends Levels{
                         try {
                             System.out.println("Select who to attack");
                             printListEnemies();
-                            in = scnr.nextInt()-1;
+                            in = scnr.nextInt() - 1;
                             if (!(in >= 0 && in < listEnemies.size())) {
                                 System.out.println("Illegal argument");
                                 throw new IllegalArgumentException();
@@ -78,60 +78,74 @@ public class Game extends Levels{
                         } catch (IllegalArgumentException e) {
                             System.out.println("Illegal argument.");
                         }
-                    }
-                    int hitRoll = hitDice.rollDie();
-                    if (hitRoll>=listEnemies.get(in).getArmorClass()) {
-                        listEnemies.get(in).takeDamage(damage);
-                        System.out.println(listEnemies.get(in).getName() + " took " + damage + "damage");
-                        if (listEnemies.get(in).getPlayerHealth() <= 0) {
-                            System.out.println(listEnemies.get(in).getName() + " has been knocked out.");
-                            listEnemies.remove(in);
+
+                        int hitRoll = hitDice.rollDie();
+                        if (hitRoll >= listEnemies.get(in).getArmorClass()) {
+                            listEnemies.get(in).takeDamage(damage);
+                            System.out.println(listEnemies.get(in).getName() + " took " + damage + "damage");
+                            if (listEnemies.get(in).getPlayerHealth() <= 0) {
+                                System.out.println(listEnemies.get(in).getName() + " has been knocked out.");
+                                listEnemies.remove(in);
+                            }
+                        } else {
+                            System.out.println(SlimeHero.getName() + " missed.");
                         }
-                    }
-                    else {
-                        System.out.println(SlimeHero.getName() + " missed.");
-                    }
-                } else if (currentPlayer.returnType().equals("Warrior")){//turn for hero
-                    int input;
-                    Random randGen = new Random();
-                    input = randGen.nextInt(20);
-                    int damage = currentPlayer.criticalHit(input);
-                    if(input==1){
-                        damage = currentPlayer.attack();
-                    } else {
-                        damage = currentPlayer.specialAttack();
                     }
 
-                    boolean intFlag = false;
-                    int in = 0;
-                    while (!intFlag == true) {
-                        try {
-                            System.out.println("Select who to attack");
-                            printListEnemies();
-                            in = scnr.nextInt()-1;
-                            if (!(in >= 0 && in < listEnemies.size())) {
-                                System.out.println("Illegal argument");
-                                throw new IllegalArgumentException();
-                            }
-                            intFlag = true;
-                        } catch (IllegalArgumentException e) {
-                            System.out.println("Illegal argument.");
-                        }
-                    }
-                    int hitRoll = hitDice.rollDie();
-                    if (hitRoll>=listEnemies.get(in).getArmorClass()) {
-                        listEnemies.get(in).takeDamage(damage);
-                        System.out.println(listEnemies.get(in).getName() + " took " + damage + "damage");
-                        if (listEnemies.get(in).getPlayerHealth() <= 0) {
-                            System.out.println(listEnemies.get(in).getName() + " has been knocked out.");
-                            listEnemies.remove(in);
-                        }
-                    }
-                    else {
-                        System.out.println(SlimeHero.getName() + " missed.");
-                    }
+                    // ENEMIES TURN
+//                  else if (currentPlayer.returnType().equals("Warrior")){//turn for hero
+//                    int input;
+//                    Random randGen = new Random();
+//                    input = randGen.nextInt(20);
+//                    int damage = currentPlayer.criticalHit(input);
+//                    if(input==1){
+//                        damage = currentPlayer.attack();
+//                    } else {
+//                        damage = currentPlayer.specialAttack();
+//                    }
+//
+//                    boolean intFlag = false;
+//                    int in = 0;
+//                    while (!intFlag == true) {
+//                        try {
+//                            System.out.println("Select who to attack");
+//                            printListEnemies();
+//                            in = scnr.nextInt()-1;
+//                            if (!(in >= 0 && in < listEnemies.size())) {
+//                                System.out.println("Illegal argument");
+//                                throw new IllegalArgumentException();
+//                            }
+//                            intFlag = true;
+//                        } catch (IllegalArgumentException e) {
+//                            System.out.println("Illegal argument.");
+//                        }
+//                    }
+//                    int hitRoll = hitDice.rollDie();
+//                    if (hitRoll>=listEnemies.get(in).getArmorClass()) {
+//                        listEnemies.get(in).takeDamage(damage);
+//                        System.out.println(listEnemies.get(in).getName() + " took " + damage + "damage");
+//                        if (listEnemies.get(in).getPlayerHealth() <= 0) {
+//                            System.out.println(listEnemies.get(in).getName() + " has been knocked out.");
+//                            listEnemies.remove(in);
+//                        }
+//                    }
+//                    else {
+//                        System.out.println(SlimeHero.getName() + " missed.");
+//                    }
+
+                    gameFlag = true;
+                }
             }
-            gameFlag = true;
+        }
+    }
+
+    /**
+     * This method will print out the names of each enemy.
+     */
+    public void printListEnemies() {
+        int i = 1;
+        for (Enemies e : listEnemies) {
+            System.out.println(i + ". " + e.getName());
         }
     }
 
@@ -143,14 +157,6 @@ public class Game extends Levels{
     public void setTurnOrder() {
         turnOrderSet = turnOrder.descendingKeySet();
     }
-
-    /**
-     * This method will print out the names of each enemy.
-     */
-    public void printListEnemies() {
-        int i = 1;
-        for (Enemies e: listEnemies) {
-            System.out.println(i + ". " + e.getName());
-        }
-    }
 }
+
+

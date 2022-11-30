@@ -53,6 +53,11 @@ public class Slime extends Players{
         return "Slime";
     }
 
+    //TODO fix
+    @Override
+    public int criticalHit(int diceRoll) {
+        return 1;
+    }
     public int criticalHit(int diceRoll, int typeOfAttack) {
         int damage;
         if(diceRoll>=15 && typeOfAttack==1){
@@ -74,7 +79,9 @@ public class Slime extends Players{
      * This method is the special attack for the Slime which deals more than the basic attack
      * @return - the damage dealt by the special attack
      */
-    int specialAttack(){ return (int) ((this.returnWeapon().rollForDamage())*1.5); }
+    public int specialAttack(){ return (int) ((this.returnWeapon().rollForDamage())*1.5); }
+
+
 
     /**
      * This method overrides the equals method for the Slime class
