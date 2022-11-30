@@ -43,11 +43,6 @@ public class Game extends Levels{
          * a System.in input from users to take an action
          */
         while(!gameFlag) {
-
-            //Ben - please excuse how messy this code is Logan, I'm kinda struggling with the best way
-            //to write all the logic for the turns. Please feel free to make as many edits as you see
-            //necessary
-
             for (Integer key: turnOrderSet){
                 Players currentPlayer = turnOrder.get(key);
 
@@ -96,22 +91,45 @@ public class Game extends Levels{
                     else {
                         System.out.println(SlimeHero.getName() + " missed.");
                     }
-//                    int damage;
-//                    int likelihood = (int) (Math.random() * (4 - 1 + 1) + 1);
-//                    if (likelihood==3){
-//                        System.out.println("Enter 1 for base attack. Enter 2 for special attack.");
-//                        int input = scnr.nextInt();
-//                        if(input==1){
-//                            damage = currentPlayer.attack();
-//                        } else {
-//                            //damage = currentPlayer.specialAttack();
-//                        }
-//                    } else {
-//
-//                    }
-                } else {//turn for enemy
+                } else if (currentPlayer.returnType().equals("Warrior")){//turn for hero
+                    int input;
+                    Random randGen = new Random();
+                    input = randGen.nextInt(20);
+                    int damage = currentPlayer.criticalHit(input);
+                    if(input==1){
+                        damage = currentPlayer.attack();
+                    } else {
+                        damage = currentPlayer.specialAttack();
+                    }
 
-                }
+                    boolean intFlag = false;
+                    int in = 0;
+                    while (!intFlag == true) {
+                        try {
+                            System.out.println("Select who to attack");
+                            printListEnemies();
+                            in = scnr.nextInt()-1;
+                            if (!(in >= 0 && in < listEnemies.size())) {
+                                System.out.println("Illegal argument");
+                                throw new IllegalArgumentException();
+                            }
+                            intFlag = true;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Illegal argument.");
+                        }
+                    }
+                    int hitRoll = hitDice.rollDie();
+                    if (hitRoll>=listEnemies.get(in).getArmorClass()) {
+                        listEnemies.get(in).takeDamage(damage);
+                        System.out.println(listEnemies.get(in).getName() + " took " + damage + "damage");
+                        if (listEnemies.get(in).getPlayerHealth() <= 0) {
+                            System.out.println(listEnemies.get(in).getName() + " has been knocked out.");
+                            listEnemies.remove(in);
+                        }
+                    }
+                    else {
+                        System.out.println(SlimeHero.getName() + " missed.");
+                    }
             }
             gameFlag = true;
         }
