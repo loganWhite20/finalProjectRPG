@@ -11,8 +11,8 @@ public class Enemies extends Players {
      * @param w - weapon the enemy begins with
      * @param name - name of the enemy
      */
-    public Enemies (int health,int mana,int speed,int armor,Weapons w,String name){
-        super(health,mana,speed,armor,w,name);
+    public Enemies (int health,int mana,int speed,int armor,String name,Weapons w){
+        super(health,mana,speed,armor,name,w);
     }
 
     /**

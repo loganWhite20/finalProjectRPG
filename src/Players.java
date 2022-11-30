@@ -20,7 +20,7 @@ public abstract class Players {
      * @param w - the weapon a player starts with
      * @param name - the name of the player
      */
-    public Players (int health,int mana,int speed,int armor,Weapons w,String name){
+    public Players (int health,int mana,int speed,int armor,String name,Weapons w){
         playerHealth = health;
         playerMana = mana;
         maxHealth = health;
