@@ -11,11 +11,11 @@ public class Slime extends Players{
      * @param name - the name of the Slime
      * @param w - the type of weapon the character has
      */
-    public Slime(int health, int mana, int speed, int armor, String name,Weapons w) {
-        super(health, mana, speed, armor, w,name);
+    public Slime(int health, int mana, int speed, int armor, String name, Weapons w) {
+        super(health, mana, speed, armor, name, w);
     }
     public Slime(Slime other) {
-        super(other.getMaxHealth(),other.getMaxMana(),other.getSpeed(),other.getArmorClass(),new Weapons(other.returnWeapon()),other.getName());
+        super(other.getMaxHealth(),other.getMaxMana(),other.getSpeed(),other.getArmorClass(),other.getName(),new Weapons(other.returnWeapon()));
     }
 
     /**

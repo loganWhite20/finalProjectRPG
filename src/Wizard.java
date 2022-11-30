@@ -12,7 +12,7 @@ public class Wizard extends Enemies {
      * @param w - beginning weapon
      */
     public Wizard(int health, int mana, int speed, int armor, String name,Weapons w) {
-        super(health, mana, speed, armor,w,name);
+        super(health, mana, speed, armor, name, w);
     }
 
     /**
