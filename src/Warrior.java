@@ -28,9 +28,4 @@ public class Warrior extends Enemies {
     public int specialAttack (){
         return (int) (attack()*1.5);
     }
-
-    @Override
-    String returnType() {
-        return "Warrior";
-    }
 }
