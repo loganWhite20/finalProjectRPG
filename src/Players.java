@@ -64,6 +64,7 @@ public abstract class Players {
         this.playerMana = p.playerMana;
         this.maxHealth = p.maxHealth;
         this.maxMana = p.maxMana;
+        this.name = p.name;
         this.speed = p.speed;
         this.armorClass = p.armorClass;
     }

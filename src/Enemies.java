@@ -51,5 +51,6 @@ public class Enemies extends Players {
     public int specialAttack() {
         return 1;
     }
+
 }
 
