@@ -47,7 +47,6 @@ public class Game extends Levels {
          * a System.in input from users to take an action
          */
         while (!gameFlag) {
-            System.out.println("Congrats, we are here");
             int input = 0;
 
             for (Integer key : turnOrderSet) {
@@ -121,7 +120,7 @@ public class Game extends Levels {
                 }
 
                 // ENEMIES TURN
-                if (currentPlayer.returnType().equals("Enemy")) {//turn for hero
+                if (currentPlayer.returnType().equals("Enemy")) {//turn for enemy
 
                     //THIS BLOCK DECIDES THE ACTION
                     Random generator = new Random();
@@ -160,7 +159,7 @@ public class Game extends Levels {
                             listPlayers.remove(input);
                         }
                     } else {
-                        System.out.println(SlimeHero.getName() + " missed.");
+                        System.out.println(currentPlayer.getName() + " missed.");
                     }
                     System.out.println();
                 }

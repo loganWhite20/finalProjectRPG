@@ -56,6 +56,7 @@ public class Enemies extends Players {
     public Enemies(Enemies e){
 
         super(e);
+        this.enemyType = e.getEnemyType();
     }
 }
 
