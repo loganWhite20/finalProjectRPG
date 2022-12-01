@@ -81,7 +81,9 @@ public class Slime extends Players{
      */
     public int specialAttack(){ return (int) ((this.returnWeapon().rollForDamage())*1.5); }
 
-
+    public String getEnemyType() {
+        return null;
+    }
 
     /**
      * This method overrides the equals method for the Slime class

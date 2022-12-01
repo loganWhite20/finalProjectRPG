@@ -2,7 +2,7 @@
  * Class for enemy players
  */
 public class Enemies extends Players {
-    String type;
+    private String enemyType;
     /**
      * Constructor for enemy players
      * @param health - amount of health to begin with
@@ -14,7 +14,7 @@ public class Enemies extends Players {
      */
     public Enemies (int health,int mana,int speed,int armor,String name,Weapons w,String t){
         super(health,mana,speed,armor,name,w);
-        type = t;
+        enemyType = t;
     }
 
     /**
@@ -26,13 +26,16 @@ public class Enemies extends Players {
         return 0;
     }
     public int specialAttack() {
-        return 1;
+        return 0;
     }
 
     @Override
     String returnType() {
-        return "Enemies";
+        return "Enemy";
     }
+
+    @Override
+    public String getEnemyType() {return enemyType;}
 
     public int criticalHit(int diceRoll) {
         int damage;

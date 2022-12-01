@@ -25,6 +25,7 @@ public class Game extends Levels {
             turnOrder.put(newEnemy.getSpeed(), newEnemy);
             //listEnemies.add(newEnemy);
         }
+        listPlayers = new ArrayList<>();
         SlimeHero = new Slime(user);
         listPlayers.add(SlimeHero);
         turnOrder.put(SlimeHero.getSpeed(), SlimeHero);
