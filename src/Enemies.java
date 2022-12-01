@@ -2,6 +2,7 @@
  * Class for enemy players
  */
 public class Enemies extends Players {
+    String type;
     /**
      * Constructor for enemy players
      * @param health - amount of health to begin with
@@ -11,8 +12,9 @@ public class Enemies extends Players {
      * @param w - weapon the enemy begins with
      * @param name - name of the enemy
      */
-    public Enemies (int health,int mana,int speed,int armor,String name,Weapons w){
+    public Enemies (int health,int mana,int speed,int armor,String name,Weapons w,String t){
         super(health,mana,speed,armor,name,w);
+        type = t;
     }
 
     /**

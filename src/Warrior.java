@@ -11,8 +11,8 @@ public class Warrior extends Enemies {
      * @param name - the name of the Warrior
      * @param w - the type of weapon the character has
      */
-    public Warrior(int health, int mana, int speed, int armor, String name,Weapons w) {
-        super(health, mana, speed, armor, name, w);
+    public Warrior(int health, int mana, int speed, int armor, String name,Weapons w,String t) {
+        super(health, mana, speed, armor, name, w,t);
     }
 
     /**

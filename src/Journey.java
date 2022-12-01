@@ -72,7 +72,7 @@ public class Journey {
         int weaponStrength = scnr.nextInt();
         int weaponDiceSides = scnr.nextInt();
         Weapons testWeapon = new Weapons(weaponType,weaponStrength,weaponDiceSides);
-        Warrior enemy = new Warrior(health,mana,speed,armor,name, testWeapon);
+        Warrior enemy = new Warrior(health,mana,speed,armor,name, testWeapon,"Warrior");
         Levels level1 = new Levels(String.valueOf(story), enemy);
         listLevels.add(level1);
     }
