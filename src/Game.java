@@ -21,8 +21,7 @@ public class Game extends Levels {
         turnOrderSet = new HashSet<>();
         gameFlag = false;
         for (Enemies enemy : levelNumber.listEnemies) {
-            Enemies newEnemy = new Enemies(enemy);
-            turnOrder.put(newEnemy.getSpeed(), newEnemy);
+            turnOrder.put(enemy.getSpeed(), enemy);
             //listEnemies.add(newEnemy);
         }
         listPlayers = new ArrayList<>();

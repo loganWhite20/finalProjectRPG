@@ -54,7 +54,6 @@ public class Enemies extends Players {
      * @param e - the enemy which you are copying
      */
     public Enemies(Enemies e){
-
         super(e);
         this.enemyType = e.getEnemyType();
     }
