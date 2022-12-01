@@ -22,11 +22,12 @@ public class Warrior extends Enemies {
     int attack (){ return this.returnWeapon().rollForDamage(); }
 
     /**
-     * This method serves as a way for the Warrior to block an attack from the hero.
-     * @param dieRoll - the die roll which determines whether the attack will hit or not
+     * This is the special attack for the warrior
      * @return - returns the amount of damage dealt
      */
-    public boolean block (int dieRoll){ return false; }
+    public int specialAttack (){
+        return (int) (attack()*1.5);
+    }
 
     @Override
     String returnType() {
