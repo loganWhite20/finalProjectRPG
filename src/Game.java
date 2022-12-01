@@ -26,6 +26,7 @@ public class Game extends Levels {
             //listEnemies.add(newEnemy);
         }
         SlimeHero = new Slime(user);
+        listPlayers.add(SlimeHero);
         turnOrder.put(SlimeHero.getSpeed(), SlimeHero);
         hitDice = new Dice(20);
     }
@@ -118,52 +119,52 @@ public class Game extends Levels {
                     System.out.println();
                 }
 
-                    // ENEMIES TURN
-//                  else if (currentPlayer.returnType().equals("Warrior")){//turn for hero
-//                    int input;
-//                    Random randGen = new Random();
-//                    input = randGen.nextInt(20);
-//                    int damage = currentPlayer.criticalHit(input);
-//                    if(input==1){
-//                        damage = currentPlayer.attack();
-//                    } else {
-//                        damage = currentPlayer.specialAttack();
-//                    }
-//
-//                    boolean intFlag = false;
-//                    int in = 0;
-//                    while (!intFlag == true) {
-//                        try {
-//                            System.out.println("Select who to attack");
-//                            printListEnemies();
-//                            in = scnr.nextInt()-1;
-//                            if (!(in >= 0 && in < listEnemies.size())) {
-//                                System.out.println("Illegal argument");
-//                                throw new IllegalArgumentException();
-//                            }
-//                            intFlag = true;
-//                        } catch (IllegalArgumentException e) {
-//                            System.out.println("Illegal argument.");
-//                        }
-//                    }
-//                    int hitRoll = hitDice.rollDie();
-//                    if (hitRoll>=listEnemies.get(in).getArmorClass()) {
-//                        listEnemies.get(in).takeDamage(damage);
-//                        System.out.println(listEnemies.get(in).getName() + " took " + damage + "damage");
-//                        if (listEnemies.get(in).getPlayerHealth() <= 0) {
-//                            System.out.println(listEnemies.get(in).getName() + " has been knocked out.");
-//                            listEnemies.remove(in);
-//                        }
-//                    }
-//                    else {
-//                        System.out.println(SlimeHero.getName() + " missed.");
-//                    }
+                // ENEMIES TURN
+                if (currentPlayer.returnType().equals("Enemy")) {//turn for hero
+
+                    //THIS BLOCK DECIDES THE ACTION
+                    Random generator = new Random();
+                    int action = generator.nextInt(21);
+
+                    if (action < 15) {
+                        input = 1;
+                    }
+                    else {
+                        input = 2;
+                    }
+                    //THIS CALCULATES DAMAGE FOR DECISION
+                    int damage;
+                    if (input == 1) {
+                        damage = SlimeHero.attack();
+                    } else {
+                        damage = SlimeHero.specialAttack();
+                    }
+
+                    // THIS DECIDES WHO TO ATTACK WITH THE ACTION
+                    Random generator2 = new Random();
+                    input = generator2.nextInt(listPlayers.size());
+
+                    // THIS BLOCK DELIVERS THE RESULTS
+                    int hitRoll = hitDice.rollDie();
+                    if (hitRoll >= listPlayers.get(input).getArmorClass()) {
+                        listPlayers.get(input).takeDamage(damage);
+                        System.out.println(listPlayers.get(input).getName() + " took " + damage + " damage.");
+                        if (listPlayers.get(input).getPlayerHealth() <= 0) {
+                            System.out.println(listPlayers.get(input).getName() + " has been knocked out.");
+                            listPlayers.remove(input);
+                        }
+                    } else {
+                        System.out.println(SlimeHero.getName() + " missed.");
+                    }
+                    System.out.println();
+                }
+
                     if (listEnemies.size() == 0) {
                         printSlow("The enemies have been vanquished!");
                         gameFlag = true;
                         break;
                     }
-                    if (SlimeHero.getPlayerHealth() <= 0) {
+                    if (listPlayers.size() == 0) {
                         printSlow("You have fallen...");
                         gameFlag = true;
                         break;

@@ -14,8 +14,7 @@ public class Levels {
     public Levels(String storyPrompt, Enemies enemy) {
         listEnemies = new ArrayList<Enemies>();
         this.storyPrompt = storyPrompt;
-        Enemies newEnemy = new Enemies(enemy);
-        listEnemies.add(newEnemy);
+        listEnemies.add(enemy);
     }
     // Constructor
     public Levels(String storyPrompt, ArrayList<Enemies> other) {
