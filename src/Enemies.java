@@ -23,6 +23,9 @@ public class Enemies extends Players {
     int attack() {
         return 0;
     }
+    public int specialAttack() {
+        return 1;
+    }
 
     @Override
     String returnType() {
@@ -47,10 +50,5 @@ public class Enemies extends Players {
     public Enemies(Enemies e){
         super(e);
     }
-
-    public int specialAttack() {
-        return 1;
-    }
-
 }
 
