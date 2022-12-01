@@ -36,7 +36,9 @@ public class Game extends Levels {
      */
     public void run() {
         // TODO LOGAN WHITE & BEN ANASTASI
-        System.out.println(storyPrompt);
+        printSlow(storyPrompt);
+        System.out.println();
+
         setTurnOrder();
         /**
          * This loop should go through the turn order and take
@@ -157,12 +159,12 @@ public class Game extends Levels {
 //                        System.out.println(SlimeHero.getName() + " missed.");
 //                    }
                     if (listEnemies.size() == 0) {
-                        System.out.println("The enemies have been vanquished!");
+                        printSlow("The enemies have been vanquished!");
                         gameFlag = true;
                         break;
                     }
                     if (SlimeHero.getPlayerHealth() <= 0) {
-                        System.out.println("You have fallen...");
+                        printSlow("You have fallen...");
                         gameFlag = true;
                         break;
                     }
@@ -189,6 +191,22 @@ public class Game extends Levels {
      */
     public void setTurnOrder() {
         turnOrderSet = turnOrder.descendingKeySet();
+    }
+    public void printSlow(String input) {
+        Scanner story = new Scanner(input);
+        while(story.hasNextLine()) {
+            Scanner in = new Scanner(story.nextLine());
+            while (in.hasNext()) {
+                in.useDelimiter("");
+                System.out.print(in.next());
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            System.out.println();
+        }
     }
 }
 
