@@ -73,6 +73,7 @@ public class Journey {
         int weaponDiceSides = scnr.nextInt();
         String enemyType = scnr.next();
         Weapons testWeapon = new Weapons(weaponType,weaponStrength,weaponDiceSides);
+        //TODO throw if statements for type of enemy - Colton
         Warrior enemy = new Warrior(health,mana,speed,armor,name, testWeapon,enemyType);
         Levels level1 = new Levels(String.valueOf(story), enemy);
         listLevels.add(level1);

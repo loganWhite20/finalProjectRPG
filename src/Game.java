@@ -134,6 +134,7 @@ public class Game extends Levels {
                         input = 2;
                     }
                     //THIS CALCULATES DAMAGE FOR DECISION
+                    //TODO GET THE ENEMY ACTIONS HERE
                     int damage;
                     if (input == 1) {
                         if (currentPlayer.getEnemyType().equals("Warrior")) {
