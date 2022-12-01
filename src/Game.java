@@ -137,7 +137,7 @@ public class Game extends Levels {
                     //TODO GET THE ENEMY ACTIONS HERE
                     int damage;
                     if (input == 1) {
-                        if (currentPlayer.getEnemyType().equals("Warrior")) {
+                        if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {
                             damage = ((Warrior) currentPlayer).attack();
                         }
                         damage = SlimeHero.attack();
