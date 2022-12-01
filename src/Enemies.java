@@ -14,6 +14,7 @@ public class Enemies extends Players {
      */
     public Enemies (int health,int mana,int speed,int armor,String name,Weapons w,String t){
         super(health,mana,speed,armor,name,w);
+
         enemyType = t;
     }
 
@@ -34,7 +35,7 @@ public class Enemies extends Players {
         return "Enemy";
     }
 
-    @Override
+    //@Override
     public String getEnemyType() {return enemyType;}
 
     public int criticalHit(int diceRoll) {
@@ -53,6 +54,7 @@ public class Enemies extends Players {
      * @param e - the enemy which you are copying
      */
     public Enemies(Enemies e){
+
         super(e);
     }
 }
