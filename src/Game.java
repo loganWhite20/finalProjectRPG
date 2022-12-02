@@ -139,9 +139,16 @@ public class Game extends Levels {
                         if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {
                             damage = ((Warrior) currentPlayer).attack();
                         }
-                        damage = SlimeHero.attack();
+                        else {
+                            damage = 0;
+                        }
                     } else {
-                        damage = SlimeHero.specialAttack();
+                        if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {
+                            damage = ((Warrior) currentPlayer).specialAttack();
+                        }
+                        else {
+                            damage = 0;
+                        }
                     }
 
                     // THIS DECIDES WHO TO ATTACK WITH THE ACTION
@@ -201,16 +208,23 @@ public class Game extends Levels {
         Scanner story = new Scanner(input);
         while(story.hasNextLine()) {
             Scanner in = new Scanner(story.nextLine());
+            in.useDelimiter("");
             while (in.hasNext()) {
-                in.useDelimiter("");
                 System.out.print(in.next());
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(75);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
             }
             System.out.println();
+        }
+    }
+    public void wait(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 }
