@@ -213,6 +213,13 @@ public class Game extends Levels {
             System.out.println();
         }
     }
+    public void wait(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
 }
 
 
