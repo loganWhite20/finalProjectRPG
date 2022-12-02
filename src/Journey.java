@@ -59,23 +59,41 @@ public class Journey {
         File file = new File(fileName);
         Scanner scnr = new Scanner(file);
         StringBuilder story = new StringBuilder();
+        ArrayList<Enemies> enemiesList = new ArrayList<>();
         while(!scnr.hasNextInt()){
             story.append(scnr.nextLine()).append(" ");
         }
 //        int numEnemies = scnr.nextInt();
-        int health = scnr.nextInt();
-        int mana = scnr.nextInt();
-        int speed = scnr.nextInt();
-        int armor = scnr.nextInt();
-        String name = scnr.next();
-        String weaponType = scnr.next();
-        int weaponStrength = scnr.nextInt();
-        int weaponDiceSides = scnr.nextInt();
-        String enemyType = scnr.next();
-        Weapons testWeapon = new Weapons(weaponType,weaponStrength,weaponDiceSides);
-        //TODO throw if statements for type of enemy - Colton
-        Warrior enemy = new Warrior(health,mana,speed,armor,name, testWeapon,enemyType);
-        Levels level1 = new Levels(String.valueOf(story), enemy);
+        while(scnr.hasNextLine()){
+            int health = scnr.nextInt();
+            int mana = scnr.nextInt();
+            int speed = scnr.nextInt();
+            int armor = scnr.nextInt();
+            String name = scnr.next();
+            String weaponType = scnr.next();
+            int weaponStrength = scnr.nextInt();
+            int weaponDiceSides = scnr.nextInt();
+            String enemyType = scnr.next();
+            Weapons testWeapon = new Weapons(weaponType,weaponStrength,weaponDiceSides);
+            //TODO throw if statements for type of enemy - Colton
+            if(enemyType.equals("Warrior")){
+                Warrior enemy = new Warrior(health,mana,speed,armor,name, testWeapon,enemyType);
+                enemiesList.add(enemy);
+            }else if(enemyType.equals("Archer")){
+                Archer enemy = new Archer(health,mana,speed,armor,name, testWeapon,enemyType);
+            }else if(enemyType.equals("Thief")){
+                Thief enemy = new Thief(health,mana,speed,armor,name, testWeapon,enemyType);
+            }else if(enemyType.equals("Wizard")){
+                Wizard enemy = new Wizard(health,mana,speed,armor,name, testWeapon,enemyType);
+            }else if(enemyType.equals("Giant")){
+                Giant enemy = new Giant(health,mana,speed,armor,name, testWeapon,enemyType);
+            }else if(enemyType.equals("Priest")){
+                Priest enemy = new Priest(health,mana,speed,armor,name, testWeapon,enemyType);
+            }else{
+
+            }
+        }
+        Levels level1 = new Levels(String.valueOf(story), enemiesList);
         listLevels.add(level1);
     }
 

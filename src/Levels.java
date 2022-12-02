@@ -21,8 +21,7 @@ public class Levels {
         listEnemies = new ArrayList<>();
         this.storyPrompt = storyPrompt;
         for (Enemies otherEnemy: other) {
-            Enemies thisEnemy = new Enemies(otherEnemy);
-            this.listEnemies.add(thisEnemy);
+            this.listEnemies.add(otherEnemy);
         }
     }
 
