@@ -17,10 +17,9 @@ public class Wizard extends Enemies {
 
     /**
      * Fireball attack for the wizard
-     * @param dieRoll - the die roll which determines how much damage is dealt
-     * @return - the amount of damage dealt
+     * * @return - the amount of damage dealt
      */
-    public int fireball(int dieRoll){return -1;}
+    public int fireball(){return this.returnWeapon().rollForDamage();}
 
     /**
      * Lightning attack for the Wizard

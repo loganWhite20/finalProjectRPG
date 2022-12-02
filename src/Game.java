@@ -135,9 +135,23 @@ public class Game extends Levels {
                     //TODO GET THE ENEMY ACTIONS HERE
                     int damage;
                     if (input == 1) {
-
-                        if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {
+                        if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {//done
                             damage = ((Warrior) currentPlayer).attack();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Archer")) {//done
+                            damage = ((Archer) currentPlayer).stab();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Giant")) {//done
+                            damage = ((Giant) currentPlayer).stomp();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Thief")) {//done
+                            damage = ((Thief) currentPlayer).stab();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Wizard")) {//done
+                            damage = ((Wizard) currentPlayer).fireball();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Zuckerberg")) {//done
+                            damage = ((Zuckerberg) currentPlayer).digitalFury();
                         }
                         damage = SlimeHero.attack();
                     } else {
