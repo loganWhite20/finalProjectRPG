@@ -139,9 +139,16 @@ public class Game extends Levels {
                         if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {
                             damage = ((Warrior) currentPlayer).attack();
                         }
-                        damage = SlimeHero.attack();
+                        else {
+                            damage = 0;
+                        }
                     } else {
-                        damage = SlimeHero.specialAttack();
+                        if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {
+                            damage = ((Warrior) currentPlayer).specialAttack();
+                        }
+                        else {
+                            damage = 0;
+                        }
                     }
 
                     // THIS DECIDES WHO TO ATTACK WITH THE ACTION
