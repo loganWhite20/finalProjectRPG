@@ -201,11 +201,11 @@ public class Game extends Levels {
         Scanner story = new Scanner(input);
         while(story.hasNextLine()) {
             Scanner in = new Scanner(story.nextLine());
+            in.useDelimiter("");
             while (in.hasNext()) {
-                in.useDelimiter("");
                 System.out.print(in.next());
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(75);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
