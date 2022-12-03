@@ -1,5 +1,5 @@
 /**
- *This class is for the enemy character Archer who has a long rang attack and a close range attack
+ *This class is for the enemy character Archer who has a long rang attack and a weak close-range attack
  */
 public class Archer extends Enemies {
     /**
@@ -10,6 +10,7 @@ public class Archer extends Enemies {
      * @param armor - the strength of armor the Archer will start with
      * @param name - the name of the Archer
      * @param w - the type of weapon the character has
+     * @param t - the type of enemy
      */
     public Archer(int health, int mana, int speed, int armor, String name,Weapons w,String t) {
         super(health, mana, speed, armor, name, w,t);
@@ -21,16 +22,15 @@ public class Archer extends Enemies {
      */
     public int stab (){
         int damage = this.returnWeapon().rollForDamage();
-        if (damage >= 2) {
+        if (damage >= 2) {//takes two damage off the attack if it's equal to 2 or more
             damage = damage - 2;
         }
         return damage;
     }
 
     /**
-     * This method is for the long range attack of the Archer
-     * @param dieRoll - the roll of the die which will determine if the attack hits
+     * This method is for the long range attack of the Archer. Multiplies base attack by 1.8
      * @return - the amount of damage dealt
      */
-    public int shoot (int dieRoll){ return (int) (stab()*1.8); }
+    public int shoot (){ return (int) ((this.returnWeapon().rollForDamage())*1.8); }
 }

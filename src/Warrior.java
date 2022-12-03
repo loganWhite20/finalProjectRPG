@@ -10,6 +10,7 @@ public class Warrior extends Enemies {
      * @param armor - the strength of armor the Warrior will start with
      * @param name - the name of the Warrior
      * @param w - the type of weapon the character has
+     * @param t - the type of enemy
      */
     public Warrior(int health, int mana, int speed, int armor, String name,Weapons w,String t) {
         super(health, mana, speed, armor, name, w,t);
@@ -22,7 +23,7 @@ public class Warrior extends Enemies {
     int attack (){ return this.returnWeapon().rollForDamage(); }
 
     /**
-     * This is the special attack for the warrior
+     * This is the special attack for the warrior. Multiplies base attack by 1.4
      * @return - returns the amount of damage dealt
      */
     public int specialAttack (){

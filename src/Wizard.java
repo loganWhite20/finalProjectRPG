@@ -10,6 +10,7 @@ public class Wizard extends Enemies {
      * @param armor - beginning armor strength
      * @param name - name of the Wizard
      * @param w - beginning weapon
+     * @param t - type of enemy
      */
     public Wizard(int health, int mana, int speed, int armor, String name,Weapons w,String t) {
         super(health, mana, speed, armor, name, w,t);
