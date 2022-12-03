@@ -23,8 +23,7 @@ public class Wizard extends Enemies {
 
     /**
      * Lightning attack for the Wizard
-     * @param dieRoll - the die roll which determines how much damage is dealt
      * @return - the amount of damage dealt
      */
-    public int lighting(int dieRoll){return -1;}
+    public int lighting(){return (int) (fireball()*1.6);}
 }

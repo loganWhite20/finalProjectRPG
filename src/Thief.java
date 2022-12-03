@@ -3,6 +3,6 @@ public class Thief extends Enemies{
         super(health, mana, speed, armor, name, w,t);
     }
     public int stab (){ return this.returnWeapon().rollForDamage(); }
-    public boolean sneak (int dieRoll){ return false; }
+    public int sneakAttack (){ return (int) (stab()*1.2); }
 
 }

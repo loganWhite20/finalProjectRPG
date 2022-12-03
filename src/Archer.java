@@ -19,12 +19,18 @@ public class Archer extends Enemies {
      * This method is for the short range, low strength melee attach
      * @return - the amount of damage dealt
      */
-    public int stab (){ return this.returnWeapon().rollForDamage(); }
+    public int stab (){
+        int damage = this.returnWeapon().rollForDamage();
+        if (damage >= 2) {
+            damage = damage - 2;
+        }
+        return damage;
+    }
 
     /**
      * This method is for the long range attack of the Archer
      * @param dieRoll - the roll of the die which will determine if the attack hits
      * @return - the amount of damage dealt
      */
-    public int shoot (int dieRoll){ return -1; }
+    public int shoot (int dieRoll){ return (int) (stab()*1.8); }
 }

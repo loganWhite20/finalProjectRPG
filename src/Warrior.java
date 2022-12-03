@@ -16,7 +16,7 @@ public class Warrior extends Enemies {
     }
 
     /**
-     * This is the basic attack of the warrior
+     * This is the basic attack of the warrior.
      * @return - returns the amount of damage dealt
      */
     int attack (){ return this.returnWeapon().rollForDamage(); }
@@ -26,6 +26,6 @@ public class Warrior extends Enemies {
      * @return - returns the amount of damage dealt
      */
     public int specialAttack (){
-        return (int) (attack()*1.5);
+        return (int) (attack()*1.4);
     }
 }
