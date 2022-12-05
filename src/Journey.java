@@ -37,7 +37,7 @@ public class Journey {
     // Constructor
     public Journey() {
         listLevels = new ArrayList<>();
-        userCharacter = new Slime(10,10,10,10,"Slime Hero", new Weapons("Sword",5,8));
+        userCharacter = new Slime(30,10,10,10,"Slime Hero", new Weapons("Sword",5,8));
     }
 
     /**

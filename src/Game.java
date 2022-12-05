@@ -110,7 +110,17 @@ public class Game extends Levels {
                         System.out.println(listEnemies.get(input).getName() + " took " + damage + " damage.");
                         if (listEnemies.get(input).getPlayerHealth() <= 0) {
                             System.out.println(listEnemies.get(input).getName() + " has been knocked out.");
+                            String name = listEnemies.get(input).getName();
                             listEnemies.remove(input);
+                            int remove = -1;
+                            for(Integer i : turnOrderSet){
+                                if(turnOrder.get(i).getName().equals(name)){
+                                    remove = i;
+                                }
+                            }
+                            turnOrderSet.remove(remove);
+                            turnOrder.remove(remove);
+
                         }
                     } else {
                         System.out.println(SlimeHero.getName() + " missed.");
