@@ -57,7 +57,7 @@ public class Game extends Levels {
 
                     //THIS BLOCK DECIDES THE ACTION
                     while (input != 1 && input != 2) {
-                        System.out.println("Slime: Enter 1 for base attack. Enter 2 for special attack.");
+                        printSlow("Slime: Enter 1 for base attack. Enter 2 for special attack.");
                         try {
                             input = scnr.nextInt();
                             System.out.println();
@@ -105,12 +105,14 @@ public class Game extends Levels {
 
                     // THIS BLOCK DELIVERS THE RESULTS
                     int hitRoll = hitDice.rollDie();
-                    if (hitRoll >= listEnemies.get(input).getArmorClass()) {
-                        listEnemies.get(input).takeDamage(damage);
-                        printSlow(listEnemies.get(input).getName() + " took " + damage + " damage.");
-                        if (listEnemies.get(input).getPlayerHealth() <= 0) {
-                            printSlow(listEnemies.get(input).getName() + " has been knocked out.");
-                            String name = listEnemies.get(input).getName();
+                    Enemies chosenEnemy = listEnemies.get(input);
+                    printSlow(currentPlayer.getName() + " is attacking " + chosenEnemy.getName() + "...");
+                    if (hitRoll >= chosenEnemy.getArmorClass()) {
+                        chosenEnemy.takeDamage(damage);
+                        printSlow(chosenEnemy.getName() + " took " + damage + " damage...");
+                        if (chosenEnemy.getPlayerHealth() <= 0) {
+                            printSlow(chosenEnemy.getName() + " has been knocked out.");
+                            String name = chosenEnemy.getName();
                             listEnemies.remove(input);
                             int remove = -1;
                             for(Integer i : turnOrderSet){
@@ -122,7 +124,7 @@ public class Game extends Levels {
                             turnOrder.remove(remove);
                         }
                     } else {
-                        System.out.println(SlimeHero.getName() + " missed.");
+                        printSlow(SlimeHero.getName() + " missed.");
                     }
                     System.out.println();
                     //Determines if player heals at all
@@ -134,7 +136,7 @@ public class Game extends Levels {
                 // ENEMIES TURN
                 if (currentPlayer.returnType().equals("Enemy")) {//turn for enemy
 
-                    printSlow(currentPlayer.getName() + " turn...");
+                    printSlow(currentPlayer.getName() + "'s turn...");
                     wait(1000);
 
                     //THIS BLOCK DECIDES THE ACTION
@@ -180,7 +182,7 @@ public class Game extends Levels {
                     // THIS DECIDES WHO TO ATTACK WITH THE ACTION
                     Random generator2 = new Random();
                     input = generator2.nextInt(listPlayers.size());
-                    printSlow(currentPlayer.getName() + " is attacking " + listPlayers.get(input) + "...");
+                    printSlow(currentPlayer.getName() + " is attacking " + listPlayers.get(input).getName() + "...");
 
 
                     // THIS BLOCK DELIVERS THE RESULTS
