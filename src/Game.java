@@ -141,6 +141,7 @@ public class Game extends Levels {
                     printSlow(currentPlayer.getName() + "'s turn...");
                     wait(1000);
 
+
                     //THIS BLOCK DECIDES THE ACTION
                     Random generator = new Random();
                     int action = generator.nextInt(21);
@@ -154,7 +155,8 @@ public class Game extends Levels {
 
                     //THIS CALCULATES DAMAGE FOR DECISION
                     //TODO GET THE ENEMY ACTIONS HERE
-                    int damage;
+                    int damage = 0;
+                    int heal = 0;
                     if (input == 1) {
                         if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {//done
                             damage = ((Warrior) currentPlayer).attack();
@@ -173,6 +175,9 @@ public class Game extends Levels {
                         }
                         else if (((Enemies) currentPlayer).getEnemyType().equals("Zuckerberg")) {//done
                             damage = ((Zuckerberg) currentPlayer).roboticStare();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Priest")) {
+                            heal = ((Priest) currentPlayer).indHeal();
                         }
                         else {
                             damage = -1;
@@ -196,38 +201,58 @@ public class Game extends Levels {
                         else if (((Enemies) currentPlayer).getEnemyType().equals("Zuckerberg")) {//done
                             damage = ((Zuckerberg) currentPlayer).digitalFury();
                         }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Priest")) {
+                            heal = ((Priest) currentPlayer).groupHeal();
+                        }
                         else {
                             damage = -1;
                         }
                     }
 
-                    // THIS DECIDES WHO TO ATTACK WITH THE ACTION
-                    Random generator2 = new Random();
-                    input = generator2.nextInt(listPlayers.size());
-                    printSlow(currentPlayer.getName() + " is attacking " + listPlayers.get(input).getName() + "...");
-
-
                     // THIS BLOCK DELIVERS THE RESULTS
-                    int hitRoll = hitDice.rollDie();
-                    if (hitRoll >= listPlayers.get(input).getArmorClass()) {
-                        if (hitRoll == 20) {
-                            int crit = listPlayers.get(input).criticalHit(damage);
-                            printSlow(listPlayers.get(input).getName() + " took " + crit + " damage... a critical hit!");
+
+                    /**
+                     * priest decision-making.
+                     */
+                    if (((Enemies) currentPlayer).getEnemyType().equals("Priest")) {
+                        // THIS DECIDES WHO TO Heal WITH THE ACTION
+                        double minHealth= 1;
+                        int index = 0;
+                        for(Enemies enemy: listEnemies) {
+                            if ((double)enemy.getPlayerHealth()/enemy.getMaxHealth() < minHealth) {
+                                minHealth = (double)enemy.getPlayerHealth()/enemy.getMaxHealth();
+                                index = listEnemies.indexOf(enemy);
+                            }
                         }
-                        else {
-                            listPlayers.get(input).takeDamage(damage);
-                            printSlow(listPlayers.get(input).getName() + " took " + damage + " damage.");
-                        }
-                        if (listPlayers.get(input).getPlayerHealth() <= 0) {
-                            printSlow(listPlayers.get(input).getName() + " has been knocked out.");
-                            listPlayers.remove(input);
-                            turnOrderSet.remove(input);
-                            turnOrder.remove(input);
-                        }
-                    } else {
-                        printSlow(currentPlayer.getName() + " missed.");
+                        listEnemies.get(index).addHealth(heal);
+                        printSlow(currentPlayer.getName() + " has healed " + listEnemies.get(index).getName() + " for " + heal + " points...");
                     }
-                    System.out.println();
+                    else {
+                        // THIS DECIDES WHO TO ATTACK WITH THE ACTION
+                        Random generator2 = new Random();
+                        input = generator2.nextInt(listPlayers.size());
+                        printSlow(currentPlayer.getName() + " is attacking " + listPlayers.get(input).getName() + "...");
+
+                        int hitRoll = hitDice.rollDie();
+                        if (hitRoll >= listPlayers.get(input).getArmorClass()) {
+                            if (hitRoll == 20) {
+                                int crit = listPlayers.get(input).criticalHit(damage);
+                                printSlow(listPlayers.get(input).getName() + " took " + crit + " damage... a critical hit!");
+                            } else {
+                                listPlayers.get(input).takeDamage(damage);
+                                printSlow(listPlayers.get(input).getName() + " took " + damage + " damage.");
+                            }
+                            if (listPlayers.get(input).getPlayerHealth() <= 0) {
+                                printSlow(listPlayers.get(input).getName() + " has been knocked out.");
+                                listPlayers.remove(input);
+                                turnOrderSet.remove(input);
+                                turnOrder.remove(input);
+                            }
+                        } else {
+                            printSlow(currentPlayer.getName() + " missed.");
+                        }
+                        System.out.println();
+                    }
                 }
 
                     if (listEnemies.size() == 0) {
