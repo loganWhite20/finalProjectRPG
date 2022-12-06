@@ -40,6 +40,7 @@ public class Game extends Levels {
         // TODO LOGAN WHITE & BEN ANASTASI
         printSlow(storyPrompt);
         System.out.println();
+        printSlow("Beginning battle...");
 
         setTurnOrder();
         /**
