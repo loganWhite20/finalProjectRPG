@@ -2,7 +2,7 @@
  * This is the class for the hero character.
  */
 public class Slime extends Players{
-    private String type;
+    private String type = "Slime";
     /**
      * This is the Constructor for the Slime character
      * @param health - the amount of health the Slime will start with
@@ -14,7 +14,7 @@ public class Slime extends Players{
      */
     public Slime(int health, int mana, int speed, int armor, String name, Weapons w) {
         super(health, mana, speed, armor, name, w);
-        type = "Slime";
+//        type = "Slime";
     }
     public Slime(Slime other) {
         super(other.getMaxHealth(),other.getMaxMana(),other.getSpeed(),other.getArmorClass(),other.getName(),new Weapons(other.returnWeapon()));
@@ -53,28 +53,29 @@ public class Slime extends Players{
         int totalDmg = (int)(dmg * 1.5);
         return totalDmg;
     }
-    public int criticalHit(int diceRoll, int typeOfAttack) {
-        int damage;
-        if(diceRoll>=15 && typeOfAttack==1){
-            damage = attack()*2;
-        }
-        else if(diceRoll>=15 && typeOfAttack==2){
-            damage = specialAttack()*2;
-        }
-        else if (diceRoll<15 && typeOfAttack==2){
-            damage = specialAttack();
-        }
-        else {
-            damage = attack();
-        }
-        return damage;
-    }
+//    public int criticalHit(int diceRoll, int typeOfAttack) {
+//        int damage;
+//        if(diceRoll>=15 && typeOfAttack==1){
+//            damage = attack()*2;
+//        }
+//        else if(diceRoll>=15 && typeOfAttack==2){
+//            damage = specialAttack()*2;
+//        }
+//        else if (diceRoll<15 && typeOfAttack==2){
+//            damage = specialAttack();
+//        }
+//        else {
+//            damage = attack();
+//        }
+//        return damage;
+//    }
 
     /**
      * This method is the special attack for the Slime which deals more than the basic attack
      * @return - the damage dealt by the special attack
      */
     public int specialAttack(){ return (int) ((this.returnWeapon().rollForDamage())*1.5 + returnWeapon().getWeaponStrength()); }
+
 
     public String getEnemyType() {
         return null;

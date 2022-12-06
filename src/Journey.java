@@ -117,7 +117,7 @@ public class Journey {
         String input = null;
         printSlow("Are you ready to begin your journey? [yes,no]");
         input = scnr.next();
-        while (!input.equals("yes") && !input.equals("Yes") && !input.equals("YES")) {
+        while (!input.equals("yes") && !input.equals("Yes") && !input.equals("YES") && !input.equals("y") && !input.equals("Y")) {
             printSlow("Are you ready to begin your journey? [yes,no]");
             input = scnr.next();
         }
@@ -133,7 +133,7 @@ public class Journey {
                 printSlow("Total lives left: " + lives);
                 printSlow("Would you like to try again? [yes,no]");
                 input = scnr.next();
-                if (input.equals("yes") || input.equals("Yes") || input.equals("YES")) {
+                if (input.equals("yes") || input.equals("Yes") || input.equals("YES") || input.equals("y") || input.equals("Y")) {
                     i--;
                     lives--;
                     printSlow("Total lives: " + lives);

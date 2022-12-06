@@ -127,10 +127,12 @@ public class Game extends Levels {
                     }
                     System.out.println();
                     //Slime hero heals
-                    int restoredHealth = SlimeHero.healthToRestore();
-                    SlimeHero.addHealth(restoredHealth);
-                    printSlow(SlimeHero.getName() + " healed " + restoredHealth + " health point(s). " +
-                            SlimeHero.getName() + " now has " + SlimeHero.returnHealth() + " health.");
+                    if (currentPlayer.getPlayerHealth() <= currentPlayer.getMaxHealth() * .95) {
+                        int restoredHealth = SlimeHero.healthToRestore();
+                        SlimeHero.addHealth(restoredHealth);
+                        printSlow(SlimeHero.getName() + " healed " + restoredHealth + " health point(s). " +
+                                SlimeHero.getName() + " now has " + SlimeHero.returnHealth() + " health.");
+                    }
                 }
 
                 // ENEMIES TURN
