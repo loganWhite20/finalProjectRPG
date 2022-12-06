@@ -112,26 +112,67 @@ public abstract class Players {
      */
     abstract int attack();
 
+    /**
+     * Abstract method for returning the type of player
+     * @return - either the type of player or if the player is dead
+     */
     abstract String returnType();
 
+    /**
+     * Abstract method that turns the players returnType to "Dead"
+     */
     abstract void deadReturnType();
 
+    /**
+     * Getter for player's name
+     * @return - player's name
+     */
     public String getName() {
         return name;
     }
+
+    /**
+     * Getter for player's maximum Mana
+     * @return - player's max mana
+     */
     public int getMaxMana() {
         return maxMana;
     }
+
+    /**
+     * Getter for player's speed which determines turn order
+     * @return - player's speed
+     */
     public int getSpeed() {
         return speed;
     }
+
+    /**
+     * Getter for player's armor class
+     * @return - player's armor class
+     */
     public int getArmorClass() {
         return armorClass;
     }
 
+    /**
+     * Getter for player's current health
+     * @return - player's current health
+     */
     public int returnHealth(){
         return playerHealth;
     }
+
+    /**
+     * Abstract method which the returns critical damage on either a base or special attack
+     * @param dmg - damage from base or special attack
+     * @return - damage dealt by critical hit
+     */
     public abstract int criticalHit(int dmg);
+
+    /**
+     * Abstract method for a player's special attack
+     * @return - damage dealt by special attack
+     */
     public abstract int specialAttack();
 }

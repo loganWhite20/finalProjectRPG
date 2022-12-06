@@ -40,34 +40,39 @@ public class Enemies extends Players {
         return 0;
     }
 
+    /**
+     * Returns is the enemy is dead or not
+     * @return - returns the returnType which will either be the type of enemy or "Dead"
+     */
     @Override
     String returnType() {
         return returnType;
     }
 
+    /**
+     * Sets the returnType of an enemy to "Dead"
+     */
     @Override
     public void deadReturnType() {
         returnType = "Dead";
     }
 
 
+    /**
+     * Returns the type of enemy this method is called on
+     * @return - the enemy type
+     */
     //@Override
     public String getEnemyType() {return enemyType;}
 
+    /**
+     * Returns critical damage on the base or special attack if this method is called
+     * @param dmg - the current damage, either from base or special attack
+     * @return - the amount of damage dealt
+     */
     public int criticalHit(int dmg) {
         int totalDmg = ((int)((double)dmg * 1.5));
         return totalDmg;
     }
-
-//    public int criticalHit(int diceRoll) {
-//        int damage;
-//        if(diceRoll>=15){
-//            damage = attack()*2;
-//        }
-//        else {
-//            damage = attack();
-//        }
-//        return damage;
-//    }
 }
 

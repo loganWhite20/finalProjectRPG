@@ -16,6 +16,11 @@ public class Slime extends Players{
         super(health, mana, speed, armor, name, w);
 //        type = "Slime";
     }
+
+    /**
+     * Copy constructor for Slime class
+     * @param other - Slime player to copy from
+     */
     public Slime(Slime other) {
         super(other.getMaxHealth(),other.getMaxMana(),other.getSpeed(),other.getArmorClass(),other.getName(),new Weapons(other.returnWeapon()));
     }
@@ -37,49 +42,39 @@ public class Slime extends Players{
         return this.returnWeapon().rollForDamage() + returnWeapon().getWeaponStrength();
     }
 
+    /**
+     * Returns the players type
+     * @return - Either the player's type or if they are dead
+     */
     @Override
     public String returnType() {
         return type;
     }
 
+    /**
+     * Changes player's type to "Dead"
+     */
     @Override
     public void deadReturnType() {
         type = "Dead";
     }
 
-    //TODO fix
+    /**
+     * Critical hit method for Slime base or special attack
+     * @param dmg - damage from base or special attack
+     * @return - the amount of damage dealt by the critical hit
+     */
     @Override
     public int criticalHit(int dmg) {
         int totalDmg = (int)(dmg * 1.5);
         return totalDmg;
     }
-//    public int criticalHit(int diceRoll, int typeOfAttack) {
-//        int damage;
-//        if(diceRoll>=15 && typeOfAttack==1){
-//            damage = attack()*2;
-//        }
-//        else if(diceRoll>=15 && typeOfAttack==2){
-//            damage = specialAttack()*2;
-//        }
-//        else if (diceRoll<15 && typeOfAttack==2){
-//            damage = specialAttack();
-//        }
-//        else {
-//            damage = attack();
-//        }
-//        return damage;
-//    }
 
     /**
      * This method is the special attack for the Slime which deals more than the basic attack
      * @return - the damage dealt by the special attack
      */
     public int specialAttack(){ return (int) ((this.returnWeapon().rollForDamage())*1.5 + returnWeapon().getWeaponStrength()); }
-
-
-    public String getEnemyType() {
-        return null;
-    }
 
     /**
      * This method overrides the equals method for the Slime class
