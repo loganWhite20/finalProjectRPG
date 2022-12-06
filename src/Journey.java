@@ -82,14 +82,19 @@ public class Journey {
                 enemiesList.add(enemy);
             }else if(enemyType.equals("Archer")){
                 Archer enemy = new Archer(health,mana,speed,armor,name, testWeapon,enemyType);
+                enemiesList.add(enemy);
             }else if(enemyType.equals("Thief")){
                 Thief enemy = new Thief(health,mana,speed,armor,name, testWeapon,enemyType);
+                enemiesList.add(enemy);
             }else if(enemyType.equals("Wizard")){
                 Wizard enemy = new Wizard(health,mana,speed,armor,name, testWeapon,enemyType);
+                enemiesList.add(enemy);
             }else if(enemyType.equals("Giant")){
                 Giant enemy = new Giant(health,mana,speed,armor,name, testWeapon,enemyType);
+                enemiesList.add(enemy);
             }else if(enemyType.equals("Priest")){
                 Priest enemy = new Priest(health,mana,speed,armor,name, testWeapon,enemyType);
+                enemiesList.add(enemy);
             }else{
 
             }
@@ -108,6 +113,7 @@ public class Journey {
 
         ArrayList<String> fileSet = new ArrayList<>();
         fileSet.add("Level1.txt");
+        fileSet.add("Level2.txt");
         fileSet.add("Level1Test.txt");
         for (String file: fileSet) {
             importLevel(file);
@@ -125,7 +131,13 @@ public class Journey {
 
         for (int i = 0; i < listLevels.size(); i++) {
             printMap(i);
-            printSlow("Starting level " + i+1 + "...");
+            int num = i +1;
+            if (num < 10) {
+                printSlow("Starting level 0" + num + "...");
+            }
+            else {
+                printSlow("Starting level " + num + "...");
+            }
             System.out.println();
             wait(1000);
             boolean result = startLevel(i+1);

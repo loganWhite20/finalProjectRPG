@@ -1,0 +1,7 @@
+After travelling through a deep woods, you have made
+it to some mountain ranges. You start the treacherous climb
+to get to the lizardfolks home on the other side. On your climb,
+you come across some patrolling enemies...
+
+5 5 2 5 Thief dagger 5 5 Thief
+5 5 3 5 Giant club 5 5 Giant

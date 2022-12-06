@@ -179,7 +179,7 @@ public class Game extends Levels {
                         }
                     } else {
                         if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {//done
-                            damage = ((Warrior) currentPlayer).attack();
+                            damage = ((Warrior) currentPlayer).specialAttack();
                         }
                         else if (((Enemies) currentPlayer).getEnemyType().equals("Archer")) {//done
                             damage = ((Archer) currentPlayer).shoot();
