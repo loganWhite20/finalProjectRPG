@@ -62,7 +62,7 @@ public class Journey {
         StringBuilder story = new StringBuilder();
         ArrayList<Enemies> enemiesList = new ArrayList<>();
         while(!scnr.hasNextInt()){
-            story.append(scnr.nextLine()).append(" ");
+            story.append(scnr.nextLine()).append(" \n");
         }
 //        int numEnemies = scnr.nextInt();
         while(scnr.hasNextLine()){

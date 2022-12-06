@@ -42,13 +42,14 @@ public class Game extends Levels {
         System.out.println();
         printSlow("Beginning battle...");
 
-        setTurnOrder();
+
         /**
          * This loop should go through the turn order and take
          * a System.in input from users to take an action
          */
         while (!gameFlag) {
             int input = 0;
+            setTurnOrder();
 
             for (Integer key : turnOrderSet) {
                 Players currentPlayer = turnOrder.get(key);
@@ -130,10 +131,12 @@ public class Game extends Levels {
                     }
                     System.out.println();
                     //Slime hero heals
-                    int restoredHealth = SlimeHero.healthToRestore();
-                    SlimeHero.addHealth(restoredHealth);
-                    printSlow(SlimeHero.getName() + " healed " + restoredHealth + " health points. " +
-                            SlimeHero.getName() + " now has " + SlimeHero.returnHealth() + " health.");
+                    if (currentPlayer.getPlayerHealth() != currentPlayer.getMaxHealth()) {
+                        int restoredHealth = SlimeHero.healthToRestore();
+                        SlimeHero.addHealth(restoredHealth);
+                        printSlow(SlimeHero.getName() + " healed " + restoredHealth + " health points. " +
+                                SlimeHero.getName() + " now has " + SlimeHero.returnHealth() + " health.");
+                    }
                 }
 
                 // ENEMIES TURN
