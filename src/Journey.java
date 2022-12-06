@@ -112,6 +112,9 @@ public class Journey {
     public void journeyLoop() throws FileNotFoundException {
         // TODO CREATE METHOD LOGAN WHITE
 
+        /**
+         * Import files here
+         */
         ArrayList<String> fileSet = new ArrayList<>();
         fileSet.add("Level1.txt");
         fileSet.add("Level2.txt");
@@ -121,6 +124,9 @@ public class Journey {
             importLevel(file);
         }
 
+        /**
+         * journey start prompt.
+         */
         Scanner scnr = new Scanner(System.in);
         String input = null;
         printSlow("Are you ready to begin your journey? [yes,no]");
@@ -131,6 +137,9 @@ public class Journey {
         }
         printSlow("Beginning your journey...");
 
+        /**
+         * cycles through which levels to start.
+         */
         for (int i = 0; i < listLevels.size(); i++) {
             printMap(i);
             int num = i +1;
@@ -167,12 +176,21 @@ public class Journey {
                 i = listLevels.size();
             }
         }
+        /**
+         * prompts victory if met.
+         */
         if (lives > 0) {
             System.out.println();
             printSlow("Congradulations! You have beaten the game!");
         }
     }
 
+    /**
+     * prints the map of levels the user will go through.
+     * a box indicates it has not been completed, and an
+     * X indicates the user has completed the level.
+     * @param currLevel
+     */
     public void printMap(int currLevel) {
         String text1 = " ";
         String text2 = "|";
