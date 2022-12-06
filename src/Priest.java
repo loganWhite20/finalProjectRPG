@@ -6,9 +6,12 @@ public class Priest extends Enemies {
     }
     public int indHeal(){
         Random dieRoll = new Random();
-        return dieRoll.nextInt(10) + 4;
+        return dieRoll.nextInt(1,10) + 3;
     }
     public int indMana(int dieRoll){ return -1; }
-    public int groupHeal(int dieRoll){ return -1; }
+    public int groupHeal(){
+        Random dieRoll = new Random();
+        return dieRoll.nextInt(1,10) + 1;
+    }
     public int groupMana(int dieRoll){ return -1; }
 }
