@@ -107,6 +107,5 @@ public class Journey {
         String fileName = "Level1Test.txt";
         importLevels(fileName);
         startLevel(1);
-
     }
 }
