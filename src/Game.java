@@ -116,8 +116,7 @@ public class Game extends Levels {
                             int crit = chosenEnemy.criticalHit(damage);
                             chosenEnemy.takeDamage(crit);
                             printSlow(chosenEnemy.getName() + " took " + damage + " damage... a critical hit!");
-                        }
-                        else {
+                        } else {
                             chosenEnemy.takeDamage(damage);
                             printSlow(chosenEnemy.getName() + " took " + damage + " damage...");
                         }
@@ -155,8 +154,7 @@ public class Game extends Levels {
 
                     if (action < 15) {
                         input = 1;
-                    }
-                    else {
+                    } else {
                         input = 2;
                     }
 
@@ -167,51 +165,37 @@ public class Game extends Levels {
                     if (input == 1) {
                         if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {//done
                             damage = ((Warrior) currentPlayer).attack();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Archer")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Archer")) {//done
                             damage = ((Archer) currentPlayer).stab();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Giant")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Giant")) {//done
                             damage = ((Giant) currentPlayer).stomp();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Thief")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Thief")) {//done
                             damage = ((Thief) currentPlayer).stab();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Wizard")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Wizard")) {//done
                             damage = ((Wizard) currentPlayer).fireball();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Zuckerberg")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Zuckerberg")) {//done
                             damage = ((Zuckerberg) currentPlayer).roboticStare();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Priest")) {
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Priest")) {
                             heal = ((Priest) currentPlayer).indHeal();
-                        }
-                        else {
+                        } else {
                             damage = -1;
                         }
                     } else {
                         if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {//done
                             damage = ((Warrior) currentPlayer).specialAttack();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Archer")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Archer")) {//done
                             damage = ((Archer) currentPlayer).shoot();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Giant")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Giant")) {//done
                             damage = ((Giant) currentPlayer).bash();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Thief")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Thief")) {//done
                             damage = ((Thief) currentPlayer).sneakAttack();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Wizard")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Wizard")) {//done
                             damage = ((Wizard) currentPlayer).lighting();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Zuckerberg")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Zuckerberg")) {//done
                             damage = ((Zuckerberg) currentPlayer).digitalFury();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Priest")) {
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Priest")) {
                             heal = ((Priest) currentPlayer).indHeal();
-                        }
-                        else {
+                        } else {
                             damage = -1;
                         }
                     }
@@ -223,23 +207,22 @@ public class Game extends Levels {
                      */
                     if (((Enemies) currentPlayer).getEnemyType().equals("Priest")) {
                         // THIS DECIDES WHO TO Heal WITH THE ACTION
-                        double minHealth= 1;
+                        double minHealth = 1;
                         int index = 0;
-                        for(Enemies enemy: listEnemies) {
-                            if ((double)enemy.getPlayerHealth()/enemy.getMaxHealth() < minHealth) {
-                                minHealth = (double)enemy.getPlayerHealth()/enemy.getMaxHealth();
+                        for (Enemies enemy : listEnemies) {
+                            if ((double) enemy.getPlayerHealth() / enemy.getMaxHealth() < minHealth) {
+                                minHealth = (double) enemy.getPlayerHealth() / enemy.getMaxHealth();
                                 index = listEnemies.indexOf(enemy);
                             }
                         }
                         Enemies healingEnemy = listEnemies.get(index);
                         healingEnemy.addHealth(heal);
-                        if (healingEnemy.getPlayerHealth()> healingEnemy.getMaxHealth()) {
-                            healingEnemy.takeDamage(healingEnemy.getPlayerHealth()-healingEnemy.getMaxHealth());
+                        if (healingEnemy.getPlayerHealth() > healingEnemy.getMaxHealth()) {
+                            healingEnemy.takeDamage(healingEnemy.getPlayerHealth() - healingEnemy.getMaxHealth());
                         }
                         printSlow(currentPlayer.getName() + " has healed " + healingEnemy.getName() + " for " + heal + " points...");
                         System.out.println();
-                    }
-                    else {
+                    } else {
                         // THIS DECIDES WHO TO ATTACK WITH THE ACTION
                         Random generator2 = new Random();
                         input = generator2.nextInt(listPlayers.size());
@@ -267,27 +250,27 @@ public class Game extends Levels {
                     }
                 }
 
-                    if (listEnemies.size() == 0) {
-                        System.out.println();
-                        printSlow("The enemies have been vanquished!");
-                        result = true;
-                        gameFlag = true;
-                        break;
-                    }
-                    if (listPlayers.size() == 0) {
-                        printSlow("You have fallen...");
-                        result = false;
-                        gameFlag = true;
-                        break;
-                    }
+                if (listEnemies.size() == 0) {
+                    System.out.println();
+                    printSlow("The enemies have been vanquished!");
+                    result = true;
+                    gameFlag = true;
+                    break;
                 }
-            if (canRemove){
+                if (listPlayers.size() == 0) {
+                    printSlow("You have fallen...");
+                    result = false;
+                    gameFlag = true;
+                    break;
+                }
+            }
+            if (canRemove) {
                 turnOrder.remove(remove);
                 turnOrderSet.remove(remove);
             }
-            }
-        return result;
         }
+        return result;
+    }
 
 
     /**
