@@ -146,6 +146,7 @@ public class Journey {
                 }
             }
         }
+        System.out.println();
         printSlow("Congradulations! You have beaten the game!");
     }
 

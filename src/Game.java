@@ -212,12 +212,14 @@ public class Game extends Levels {
                 }
 
                     if (listEnemies.size() == 0) {
+                        System.out.println();
                         printSlow("The enemies have been vanquished!");
                         result = true;
                         gameFlag = true;
                         break;
                     }
                     if (listPlayers.size() == 0) {
+                        System.out.println();
                         printSlow("You have fallen...");
                         result = false;
                         gameFlag = true;
