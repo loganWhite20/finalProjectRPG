@@ -1,7 +1,10 @@
+import javax.crypto.spec.PSource;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.logging.Level;
 
 /**
@@ -12,6 +15,7 @@ import java.util.logging.Level;
 public class Journey {
     private ArrayList<Levels> listLevels;
     private  Slime userCharacter;
+    private int lives = 3;
 
     // Constructor
     public Journey(String filename) {
@@ -44,9 +48,10 @@ public class Journey {
      * This method creates a game object and will run a level through the object.
      * @param levelNumber - the level the heroes are on.
      */
-    public void startLevel(int levelNumber) {
+    public boolean startLevel(int levelNumber) {
         Game level = new Game(listLevels.get(levelNumber-1), userCharacter);
-        level.run();
+        boolean result = level.run();
+        return result;
     }
 
     /**
@@ -54,7 +59,7 @@ public class Journey {
      * in the journey.
      * @param fileName
      */
-    public void importLevels(String fileName) throws FileNotFoundException {
+    public void importLevel(String fileName) throws FileNotFoundException {
         // TODO COLTON MIDDAUGH
         File file = new File(fileName);
         Scanner scnr = new Scanner(file);
@@ -104,8 +109,130 @@ public class Journey {
      */
     public void journeyLoop() throws FileNotFoundException {
         // TODO CREATE METHOD LOGAN WHITE
-        String fileName = "Level1Test.txt";
-        importLevels(fileName);
-        startLevel(1);
+
+        Set<String> fileSet = new HashSet<>();
+        fileSet.add("Level1Test.txt");
+        for (String file: fileSet) {
+            importLevel(file);
+        }
+
+        Scanner scnr = new Scanner(System.in);
+        String input = null;
+        printSlow("Are you ready to begin your journey? [yes,no]");
+        input = scnr.next();
+        while (!input.equals("yes") && !input.equals("Yes") && !input.equals("YES")) {
+            printSlow("Are you ready to begin your journey? [yes,no]");
+            input = scnr.next();
+        }
+        printSlow("Beginning your journey...");
+
+        for (int i = 0; i < listLevels.size(); i++) {
+            printMap(i);
+            printSlow("Starting level " + i+1 + "...");
+            System.out.println();
+            wait(1000);
+            boolean result = startLevel(i+1);
+            if (result == false && lives > 0) {
+                printSlow("Total lives left: " + lives);
+                printSlow("Would you like to try again? [yes,no]");
+                input = scnr.next();
+                if (input.equals("yes") || input.equals("Yes") || input.equals("YES")) {
+                    i--;
+                    lives--;
+                    printSlow("Total lives: " + lives);
+                }
+                else {
+                    printSlow("Quitting...");
+                }
+            }
+        }
+        printSlow("Congradulations! You have beaten the game!");
+    }
+
+    public void printMap(int currLevel) {
+        System.out.println("Map:");
+        for (int i = 0; i < listLevels.size(); i++) {
+            if (i >= currLevel) {
+                if (i == 0) {
+                    System.out.println(" ----- ");
+                    System.out.println("|  _   ");
+                    System.out.println("| |_|  ");
+                    System.out.println("|  " + (i + 1) + "   ");
+                    System.out.println(" ----- ");
+                } else if (i < listLevels.size()) {
+                    System.out.println("----- ");
+                    System.out.println("  _   ");
+                    System.out.println(" |_|  ");
+                    System.out.println("|  " + (i + 1) + "   ");
+                    System.out.println("----- ");
+                } else {
+                    System.out.println("----- ");
+                    System.out.println("  _  |");
+                    System.out.println(" |_| |");
+                    System.out.println("  " + (i + 1) + "   |");
+                    System.out.println("----- ");
+                }
+
+            }
+            else {
+                if (i == 0) {
+                    System.out.println(" ----- ");
+                    System.out.println("|      ");
+                    System.out.println("|  X   ");
+                    System.out.println("|  " + (i + 1) + "   ");
+                    System.out.println(" ----- ");
+                } else if (i < listLevels.size()) {
+                    System.out.println("----- ");
+                    System.out.println("      ");
+                    System.out.println("  X   ");
+                    System.out.println("  " + (i + 1) + "   ");
+                    System.out.println("----- ");
+                } else {
+                    System.out.println("----- ");
+                    System.out.println("     |");
+                    System.out.println("  X  |");
+                    System.out.println("  " + (i + 1) + "   |");
+                    System.out.println("----- ");
+                }
+            }
+        }
+    }
+
+    /**
+     * prints string input on a delay.
+     * @param input
+     */
+    public void printSlow(String input) {
+        Scanner story = new Scanner(input);
+        while(story.hasNextLine()) {
+            Scanner in = new Scanner(story.nextLine());
+            in.useDelimiter("");
+            while (in.hasNext()) {
+                System.out.print(in.next());
+                try {
+                    Thread.sleep(75);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * delays the code in milliseconds.
+     * @param milliseconds
+     */
+    public void wait(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }

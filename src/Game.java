@@ -35,7 +35,8 @@ public class Game extends Levels {
      * This method will run the actual combat itself. It will loop through a turn
      * order and await for action from users and attack if it is an AI enemy.
      */
-    public void run() {
+    public boolean run() {
+        boolean result = false;
         // TODO LOGAN WHITE & BEN ANASTASI
         printSlow(storyPrompt);
         System.out.println();
@@ -210,16 +211,19 @@ public class Game extends Levels {
 
                     if (listEnemies.size() == 0) {
                         printSlow("The enemies have been vanquished!");
+                        result = true;
                         gameFlag = true;
                         break;
                     }
                     if (listPlayers.size() == 0) {
                         printSlow("You have fallen...");
+                        result = false;
                         gameFlag = true;
                         break;
                     }
                 }
             }
+        return result;
         }
 
 
@@ -242,6 +246,11 @@ public class Game extends Levels {
     public void setTurnOrder() {
         turnOrderSet = turnOrder.descendingKeySet();
     }
+
+    /**
+     * prints string input on a delay.
+     * @param input
+     */
     public void printSlow(String input) {
         Scanner story = new Scanner(input);
         while(story.hasNextLine()) {
@@ -263,6 +272,10 @@ public class Game extends Levels {
             System.out.println();
         }
     }
+    /**
+     * delays the code in milliseconds.
+     * @param milliseconds
+     */
     public void wait(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
