@@ -113,13 +113,13 @@ public class Game extends Levels {
                             String name = listEnemies.get(input).getName();
                             listEnemies.remove(input);
                             int remove = -1;
-//                            for(Integer i : turnOrderSet){
-//                                if(turnOrder.get(i).getName().equals(name)){
-//                                    remove = i;
-//                                }
-//                            }
-                            turnOrderSet.remove(input);
-                            turnOrder.remove(input);
+                            for(Integer i : turnOrderSet){
+                                if(turnOrder.get(i).getName().equals(name)){
+                                    remove = i;
+                                }
+                            }
+                            turnOrderSet.remove(remove);
+                            turnOrder.remove(remove);
                         }
                     } else {
                         System.out.println(SlimeHero.getName() + " missed.");
