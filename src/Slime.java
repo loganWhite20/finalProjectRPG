@@ -18,6 +18,7 @@ public class Slime extends Players{
     }
     public Slime(Slime other) {
         super(other.getMaxHealth(),other.getMaxMana(),other.getSpeed(),other.getArmorClass(),other.getName(),new Weapons(other.returnWeapon()));
+        this.type = other.type;
     }
 
     /**
@@ -75,10 +76,6 @@ public class Slime extends Players{
      * @return - the damage dealt by the special attack
      */
     public int specialAttack(){ return (int) ((this.returnWeapon().rollForDamage())*1.5 + returnWeapon().getWeaponStrength()); }
-
-    public String getEnemyType() {
-        return null;
-    }
 
     /**
      * This method overrides the equals method for the Slime class

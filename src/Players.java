@@ -134,5 +134,4 @@ public abstract class Players {
     }
     public abstract int criticalHit(int dmg);
     public abstract int specialAttack();
-   // public abstract String getEnemyType();
 }
