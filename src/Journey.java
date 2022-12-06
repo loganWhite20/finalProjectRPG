@@ -120,9 +120,9 @@ public class Journey {
          * Import files here
          */
         ArrayList<String> fileSet = new ArrayList<>();
-//        fileSet.add("Level1.txt");
-//        fileSet.add("Level2.txt");
-//        fileSet.add("Level3.txt");
+        fileSet.add("Level1.txt");
+        fileSet.add("Level2.txt");
+        fileSet.add("Level3.txt");
         fileSet.add("Level4_boss.txt");
         for (String file: fileSet) {
             importLevel(file);
