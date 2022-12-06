@@ -20,12 +20,12 @@ public class Thief extends Enemies{
      * Base attack for Thief
      * @return - amount of damage dealt
      */
-    public int stab (){ return this.returnWeapon().rollForDamage(); }
+    public int stab (){ return this.returnWeapon().rollForDamage() + returnWeapon().getWeaponStrength(); }
 
     /**
      * Special attack for Thief. Multiplies base attack by 1.2
      * @return
      */
-    public int sneakAttack (){ return (int) (stab()*1.2); }
+    public int sneakAttack (){ return (int) (stab()*1.2 + returnWeapon().getWeaponStrength()); }
 
 }

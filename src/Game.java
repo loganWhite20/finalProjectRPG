@@ -57,7 +57,7 @@ public class Game extends Levels {
 
                     //THIS BLOCK DECIDES THE ACTION
                     while (input != 1 && input != 2) {
-                        System.out.println("Slime: Enter 1 for base attack. Enter 2 for special attack.");
+                        printSlow("Slime: Enter 1 for base attack. Enter 2 for special attack.");
                         try {
                             input = scnr.nextInt();
                             System.out.println();
@@ -103,34 +103,41 @@ public class Game extends Levels {
                         }
                     }
 
+                    printSlow(currentPlayer.getName() + " is attacking " + listEnemies.get(input).getName() + "...");
+
                     // THIS BLOCK DELIVERS THE RESULTS
                     int hitRoll = hitDice.rollDie();
                     if (hitRoll >= listEnemies.get(input).getArmorClass()) {
+                        if (hitRoll == 20) {
+                            int crit = listEnemies.get(input).criticalHit(damage);
+                            listEnemies.get(input).takeDamage(crit);
+                            printSlow(listEnemies.get(input).getName() + " took " + damage + " damage... a critical hit!");
+                        }
                         listEnemies.get(input).takeDamage(damage);
-                        printSlow(listEnemies.get(input).getName() + " took " + damage + " damage.");
+                        printSlow(listEnemies.get(input).getName() + " took " + damage + " damage...");
                         if (listEnemies.get(input).getPlayerHealth() <= 0) {
                             printSlow(listEnemies.get(input).getName() + " has been knocked out.");
                             String name = listEnemies.get(input).getName();
                             listEnemies.remove(input);
                             int remove = -1;
-//                            for(Integer i : turnOrderSet){
-//                                if(turnOrder.get(i).getName().equals(name)){
-//                                    remove = i;
-//                                }
-//                            }
-                            turnOrderSet.remove(input);
-                            turnOrder.remove(input);
+                            for(Integer i : turnOrderSet){
+                                if(turnOrder.get(i).getName().equals(name)){
+                                    remove = i;
+                                }
+                            }
+                            turnOrderSet.remove(remove);
+                            turnOrder.remove(listPlayers.get(input).getSpeed());
                         }
                     } else {
-                        System.out.println(SlimeHero.getName() + " missed.");
+                        printSlow(SlimeHero.getName() + " missed.");
                     }
                     System.out.println();
                 }
 
                 // ENEMIES TURN
-                if (currentPlayer.returnType().equals("Enemy")) {//turn for enemy
+                else if (currentPlayer.returnType().equals("Enemy")) {//turn for enemy
 
-                    printSlow(currentPlayer.getName() + " turn...");
+                    printSlow(currentPlayer.getName() + "'s turn...");
                     wait(1000);
 
                     //THIS BLOCK DECIDES THE ACTION
@@ -139,8 +146,7 @@ public class Game extends Levels {
 
                     if (action < 15) {
                         input = 1;
-                    }
-                    else {
+                    } else {
                         input = 2;
                     }
 
@@ -150,23 +156,17 @@ public class Game extends Levels {
                     if (input == 1) {
                         if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {//done
                             damage = ((Warrior) currentPlayer).attack();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Archer")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Archer")) {//done
                             damage = ((Archer) currentPlayer).stab();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Giant")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Giant")) {//done
                             damage = ((Giant) currentPlayer).stomp();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Thief")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Thief")) {//done
                             damage = ((Thief) currentPlayer).stab();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Wizard")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Wizard")) {//done
                             damage = ((Wizard) currentPlayer).fireball();
-                        }
-                        else if (((Enemies) currentPlayer).getEnemyType().equals("Zuckerberg")) {//done
+                        } else if (((Enemies) currentPlayer).getEnemyType().equals("Zuckerberg")) {//done
                             damage = ((Zuckerberg) currentPlayer).digitalFury();
-                        }
-                        else {
+                        } else {
                             damage = -1;
                         }
                     } else {
@@ -176,7 +176,7 @@ public class Game extends Levels {
                     // THIS DECIDES WHO TO ATTACK WITH THE ACTION
                     Random generator2 = new Random();
                     input = generator2.nextInt(listPlayers.size());
-                    printSlow(currentPlayer.getName() + " is attacking " + listPlayers.get(input) + "...");
+                    printSlow(currentPlayer.getName() + " is attacking " + listPlayers.get(input).getName() + "...");
 
 
                     // THIS BLOCK DELIVERS THE RESULTS
@@ -184,9 +184,9 @@ public class Game extends Levels {
                     if (hitRoll >= listPlayers.get(input).getArmorClass()) {
                         if (hitRoll == 20) {
                             int crit = listPlayers.get(input).criticalHit(damage);
+                            listPlayers.get(input).takeDamage(crit);
                             printSlow(listPlayers.get(input).getName() + " took " + crit + " damage... a critical hit!");
-                        }
-                        else {
+                        } else {
                             listPlayers.get(input).takeDamage(damage);
                             printSlow(listPlayers.get(input).getName() + " took " + damage + " damage.");
                         }
@@ -202,19 +202,19 @@ public class Game extends Levels {
                     System.out.println();
                 }
 
-                    if (listEnemies.size() == 0) {
-                        printSlow("The enemies have been vanquished!");
-                        gameFlag = true;
-                        break;
-                    }
-                    if (listPlayers.size() == 0) {
-                        printSlow("You have fallen...");
-                        gameFlag = true;
-                        break;
-                    }
+                if (listEnemies.size() == 0) {
+                    printSlow("The enemies have been vanquished!");
+                    gameFlag = true;
+                    break;
+                }
+                if (listPlayers.size() == 0) {
+                    printSlow("You have fallen...");
+                    gameFlag = true;
+                    break;
                 }
             }
         }
+    }
 
 
     /**

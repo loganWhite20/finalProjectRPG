@@ -20,11 +20,11 @@ public class Giant extends Enemies {
      * Base attack for Giant
      * @return - amount of damage dealt
      */
-    public int stomp (){ return this.returnWeapon().rollForDamage(); }
+    public int stomp (){ return this.returnWeapon().rollForDamage()  + returnWeapon().getWeaponStrength(); }
 
     /**
      * Special attack for Giant. Multiplies the stomp attack by 2
      * @return - the amount of damage dealt
      */
-    public int bash (){ return (int) (bash()*2); }
+    public int bash (){ return (int) (this.returnWeapon().rollForDamage()*2 + returnWeapon().getWeaponStrength()); }
 }

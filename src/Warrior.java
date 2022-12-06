@@ -20,7 +20,7 @@ public class Warrior extends Enemies {
      * This is the basic attack of the warrior.
      * @return - returns the amount of damage dealt
      */
-    int attack (){ return this.returnWeapon().rollForDamage(); }
+    int attack (){ return this.returnWeapon().rollForDamage() + returnWeapon().getWeaponStrength(); }
 
     /**
      * This is the special attack for the warrior. Multiplies base attack by 1.4

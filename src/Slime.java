@@ -45,7 +45,7 @@ public class Slime extends Players{
      */
     @Override
     int attack() {
-        return this.returnWeapon().rollForDamage();
+        return this.returnWeapon().rollForDamage() + returnWeapon().getWeaponStrength();
     }
 
     @Override
@@ -55,8 +55,9 @@ public class Slime extends Players{
 
     //TODO fix
     @Override
-    public int criticalHit(int diceRoll) {
-        return 1;
+    public int criticalHit(int dmg) {
+        int totalDmg = (int)(dmg * 1.5);
+        return totalDmg;
     }
     public int criticalHit(int diceRoll, int typeOfAttack) {
         int damage;

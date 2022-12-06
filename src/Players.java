@@ -32,6 +32,20 @@ public abstract class Players {
     }
 
     /**
+     * Copy constructor for the players class
+     * @param p - the player to create a copy from
+     */
+    public Players(Players p){//Copy constructor
+        this.playerHealth = p.playerHealth;
+        this.playerMana = p.playerMana;
+        this.maxHealth = p.maxHealth;
+        this.maxMana = p.maxMana;
+        this.name = p.name;
+        this.speed = p.speed;
+        this.armorClass = p.armorClass;
+    }
+
+    /**
      * Adds to a players health
      * @param value - the amount of health to add or subtract from the current players health
      */
@@ -53,20 +67,6 @@ public abstract class Players {
      */
     public int getMaxHealth(){
         return maxHealth;
-    }
-
-    /**
-     * Copy constructor for the players class
-     * @param p - the player to create a copy from
-     */
-    public Players(Players p){//Copy constructor
-        this.playerHealth = p.playerHealth;
-        this.playerMana = p.playerMana;
-        this.maxHealth = p.maxHealth;
-        this.maxMana = p.maxMana;
-        this.name = p.name;
-        this.speed = p.speed;
-        this.armorClass = p.armorClass;
     }
 
     /**
@@ -126,7 +126,7 @@ public abstract class Players {
     public int getArmorClass() {
         return armorClass;
     }
-    public abstract int criticalHit(int diceHit);
+    public abstract int criticalHit(int dmg);
     public abstract int specialAttack();
    // public abstract String getEnemyType();
 }
