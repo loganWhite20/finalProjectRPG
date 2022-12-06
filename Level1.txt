@@ -6,5 +6,6 @@ have decided to set forth on a journey to save
 your village...
 
 On the start of your journey, you come across two enemies...
+
 5 5 2 5 Grunt_1 sword 5 5 Warrior
 5 5 3 5 Grunt_2 sword 5 5 Warrior

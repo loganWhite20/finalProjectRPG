@@ -238,7 +238,6 @@ public class Game extends Levels {
                         break;
                     }
                     if (listPlayers.size() == 0) {
-                        System.out.println();
                         printSlow("You have fallen...");
                         result = false;
                         gameFlag = true;

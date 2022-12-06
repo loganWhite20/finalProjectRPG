@@ -65,16 +65,19 @@ public class Journey {
             story.append(scnr.nextLine()).append(" \n");
         }
 //        int numEnemies = scnr.nextInt();
+        scnr.nextLine();
         while(scnr.hasNextLine()){
-            int health = scnr.nextInt();
-            int mana = scnr.nextInt();
-            int speed = scnr.nextInt();
-            int armor = scnr.nextInt();
-            String name = scnr.next();
-            String weaponType = scnr.next();
-            int weaponStrength = scnr.nextInt();
-            int weaponDiceSides = scnr.nextInt();
-            String enemyType = scnr.next();
+            String input = scnr.nextLine();
+            Scanner scan = new Scanner(input);
+            int health = scan.nextInt();
+            int mana = scan.nextInt();
+            int speed = scan.nextInt();
+            int armor = scan.nextInt();
+            String name = scan.next();
+            String weaponType = scan.next();
+            int weaponStrength = scan.nextInt();
+            int weaponDiceSides = scan.nextInt();
+            String enemyType = scan.next();
             Weapons testWeapon = new Weapons(weaponType,weaponStrength,weaponDiceSides);
             //TODO throw if statements for type of enemy - Colton
             if(enemyType.equals("Warrior")){
@@ -99,6 +102,7 @@ public class Journey {
                 Zuckerberg enemy = new Zuckerberg(health,mana,speed,armor,name,testWeapon,enemyType);
                 enemiesList.add(enemy);
             }
+            scan.close();
         }
         Levels level1 = new Levels(String.valueOf(story), enemiesList);
         listLevels.add(level1);
@@ -119,7 +123,7 @@ public class Journey {
         fileSet.add("Level1.txt");
         fileSet.add("Level2.txt");
         fileSet.add("Level3.txt");
-//        fileSet.add("Level4_boss.txt");
+        fileSet.add("Level4_boss.txt");
         for (String file: fileSet) {
             importLevel(file);
         }
