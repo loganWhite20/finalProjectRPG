@@ -202,7 +202,7 @@ public class Game extends Levels {
                             damage = ((Zuckerberg) currentPlayer).digitalFury();
                         }
                         else if (((Enemies) currentPlayer).getEnemyType().equals("Priest")) {
-                            heal = ((Priest) currentPlayer).groupHeal();
+                            heal = ((Priest) currentPlayer).indHeal();
                         }
                         else {
                             damage = -1;
@@ -224,8 +224,13 @@ public class Game extends Levels {
                                 index = listEnemies.indexOf(enemy);
                             }
                         }
-                        listEnemies.get(index).addHealth(heal);
-                        printSlow(currentPlayer.getName() + " has healed " + listEnemies.get(index).getName() + " for " + heal + " points...");
+                        Enemies healingEnemy = listEnemies.get(index);
+                        healingEnemy.addHealth(heal);
+                        if (healingEnemy.getPlayerHealth()> healingEnemy.getMaxHealth()) {
+                            healingEnemy.takeDamage(healingEnemy.getPlayerHealth()-healingEnemy.getMaxHealth());
+                        }
+                        printSlow(currentPlayer.getName() + " has healed " + healingEnemy.getName() + " for " + heal + " points...");
+                        System.out.println();
                     }
                     else {
                         // THIS DECIDES WHO TO ATTACK WITH THE ACTION
