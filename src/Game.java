@@ -130,7 +130,8 @@ public class Game extends Levels {
                     //Slime hero heals
                     int restoredHealth = SlimeHero.healthToRestore();
                     SlimeHero.addHealth(restoredHealth);
-                    System.out.println(SlimeHero.getName() + " healed " + restoredHealth + " health points.");
+                    printSlow(SlimeHero.getName() + " healed " + restoredHealth + " health points. " +
+                            SlimeHero.getName() + " now has " + SlimeHero.returnHealth() + " health.");
                 }
 
                 // ENEMIES TURN

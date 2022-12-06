@@ -126,6 +126,10 @@ public abstract class Players {
     public int getArmorClass() {
         return armorClass;
     }
+
+    public int returnHealth(){
+        return playerHealth;
+    }
     public abstract int criticalHit(int dmg);
     public abstract int specialAttack();
    // public abstract String getEnemyType();
