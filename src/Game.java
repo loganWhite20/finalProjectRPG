@@ -125,10 +125,10 @@ public class Game extends Levels {
                         System.out.println(SlimeHero.getName() + " missed.");
                     }
                     System.out.println();
-                    //Determines if player heals at all
-                    Random generator = new Random();
-                    int action = generator.nextInt(21);
-
+                    //Slime hero heals
+                    int restoredHealth = SlimeHero.healthToRestore();
+                    SlimeHero.addHealth(restoredHealth);
+                    System.out.println(SlimeHero.getName() + " healed " + restoredHealth + " health points.");
                 }
 
                 // ENEMIES TURN
