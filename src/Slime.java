@@ -24,15 +24,15 @@ public class Slime extends Players{
      * @param dieRoll - the die roll value which determines how much health is restored
      */
     void restoreHealth(int dieRoll) {
-        if(dieRoll<20){
+        if(dieRoll > 15 ){
             int max = getMaxHealth();
             int add = (int) (max*0.15);
             addHealth(add);
-        } else if(dieRoll <15){
+        } else if(dieRoll > 10){
             int max = getMaxHealth();
             int add = (int) (max*0.1);
             addHealth(add);
-        } else if(dieRoll<10 && dieRoll>4){
+        } else if(dieRoll > 5){
             int max = getMaxHealth();
             int add = (int) (max*0.05);
             addHealth(add);
