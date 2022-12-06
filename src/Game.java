@@ -130,7 +130,7 @@ public class Game extends Levels {
                     //Slime hero heals
                     int restoredHealth = SlimeHero.healthToRestore();
                     SlimeHero.addHealth(restoredHealth);
-                    printSlow(SlimeHero.getName() + " healed " + restoredHealth + " health points. " +
+                    printSlow(SlimeHero.getName() + " healed " + restoredHealth + " health point(s). " +
                             SlimeHero.getName() + " now has " + SlimeHero.returnHealth() + " health.");
                 }
 
@@ -171,13 +171,33 @@ public class Game extends Levels {
                             damage = ((Wizard) currentPlayer).fireball();
                         }
                         else if (((Enemies) currentPlayer).getEnemyType().equals("Zuckerberg")) {//done
-                            damage = ((Zuckerberg) currentPlayer).digitalFury();
+                            damage = ((Zuckerberg) currentPlayer).roboticStare();
                         }
                         else {
                             damage = -1;
                         }
                     } else {
-                        damage = SlimeHero.specialAttack();
+                        if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {//done
+                            damage = ((Warrior) currentPlayer).attack();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Archer")) {//done
+                            damage = ((Archer) currentPlayer).shoot();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Giant")) {//done
+                            damage = ((Giant) currentPlayer).bash();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Thief")) {//done
+                            damage = ((Thief) currentPlayer).sneakAttack();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Wizard")) {//done
+                            damage = ((Wizard) currentPlayer).lighting();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Zuckerberg")) {//done
+                            damage = ((Zuckerberg) currentPlayer).digitalFury();
+                        }
+                        else {
+                            damage = -1;
+                        }
                     }
 
                     // THIS DECIDES WHO TO ATTACK WITH THE ACTION
