@@ -19,24 +19,11 @@ public class Slime extends Players{
     }
 
     /**
-     * This method determines if or how much the Slime character will restore health.
-     * The amount of health that is restored is based off of a die roll
-     * @param dieRoll - the die roll value which determines how much health is restored
+     * This method restores 5% of the players maxHealth
      */
-    void restoreHealth(int dieRoll) {
-        if(dieRoll > 15 ){
-            int max = getMaxHealth();
-            int add = (int) (max*0.15);
-            addHealth(add);
-        } else if(dieRoll > 10){
-            int max = getMaxHealth();
-            int add = (int) (max*0.1);
-            addHealth(add);
-        } else if(dieRoll > 5){
-            int max = getMaxHealth();
-            int add = (int) (max*0.05);
-            addHealth(add);
-        }
+    public int healthToRestore() {
+        int max = getMaxHealth();
+        return (int) (max*0.05);
     }
 
     /**
