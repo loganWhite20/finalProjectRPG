@@ -1,11 +1,7 @@
-import javax.crypto.spec.PSource;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.logging.Level;
 
 /**
  * This class holds the levels that the heroes will go through on a journey.
@@ -110,7 +106,8 @@ public class Journey {
     public void journeyLoop() throws FileNotFoundException {
         // TODO CREATE METHOD LOGAN WHITE
 
-        Set<String> fileSet = new HashSet<>();
+        ArrayList<String> fileSet = new ArrayList<>();
+        fileSet.add("Level1.txt");
         fileSet.add("Level1Test.txt");
         for (String file: fileSet) {
             importLevel(file);
@@ -151,52 +148,37 @@ public class Journey {
     }
 
     public void printMap(int currLevel) {
+        String text1 = " ";
+        String text2 = "|";
+        String text3 = "|";
+        String text4 = "|";
         System.out.println("Map:");
         for (int i = 0; i < listLevels.size(); i++) {
             if (i >= currLevel) {
-                if (i == 0) {
-                    System.out.println(" ----- ");
-                    System.out.println("|  _   ");
-                    System.out.println("| |_|  ");
-                    System.out.println("|  " + (i + 1) + "   ");
-                    System.out.println(" ----- ");
-                } else if (i < listLevels.size()) {
-                    System.out.println("----- ");
-                    System.out.println("  _   ");
-                    System.out.println(" |_|  ");
-                    System.out.println("|  " + (i + 1) + "   ");
-                    System.out.println("----- ");
-                } else {
-                    System.out.println("----- ");
-                    System.out.println("  _  |");
-                    System.out.println(" |_| |");
-                    System.out.println("  " + (i + 1) + "   |");
-                    System.out.println("----- ");
-                }
+
+                    text1 += "-----";
+                    text2 += "  _  ";
+                    text3 += " |_| ";
+                    text4 += "  " + (i + 1) + "  ";
 
             }
             else {
-                if (i == 0) {
-                    System.out.println(" ----- ");
-                    System.out.println("|      ");
-                    System.out.println("|  X   ");
-                    System.out.println("|  " + (i + 1) + "   ");
-                    System.out.println(" ----- ");
-                } else if (i < listLevels.size()) {
-                    System.out.println("----- ");
-                    System.out.println("      ");
-                    System.out.println("  X   ");
-                    System.out.println("  " + (i + 1) + "   ");
-                    System.out.println("----- ");
-                } else {
-                    System.out.println("----- ");
-                    System.out.println("     |");
-                    System.out.println("  X  |");
-                    System.out.println("  " + (i + 1) + "   |");
-                    System.out.println("----- ");
-                }
+
+                text1 += "-----";
+                text2 += "     ";
+                text3 += "  X  ";
+                text4 += "  " + (i + 1) + "  ";
+
             }
         }
+        text2 += "|";
+        text3 += "|";
+        text4 += "|";
+        System.out.println(text1);
+        System.out.println(text2);
+        System.out.println(text3);
+        System.out.println(text4);
+        System.out.println(text1);
     }
 
     /**
