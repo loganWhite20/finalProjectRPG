@@ -125,6 +125,10 @@ public class Game extends Levels {
                         System.out.println(SlimeHero.getName() + " missed.");
                     }
                     System.out.println();
+                    //Determines if player heals at all
+                    Random generator = new Random();
+                    int action = generator.nextInt(21);
+
                 }
 
                 // ENEMIES TURN
