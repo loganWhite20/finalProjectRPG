@@ -95,8 +95,9 @@ public class Journey {
             }else if(enemyType.equals("Priest")){
                 Priest enemy = new Priest(health,mana,speed,armor,name, testWeapon,enemyType);
                 enemiesList.add(enemy);
-            }else{
-
+            }else if(enemyType.equals("Zuckerberg")){
+                Zuckerberg enemy = new Zuckerberg(health,mana,speed,armor,name,testWeapon,enemyType);
+                enemiesList.add(enemy);
             }
         }
         Levels level1 = new Levels(String.valueOf(story), enemiesList);
@@ -114,7 +115,8 @@ public class Journey {
         ArrayList<String> fileSet = new ArrayList<>();
         fileSet.add("Level1.txt");
         fileSet.add("Level2.txt");
-        fileSet.add("Level1Test.txt");
+        fileSet.add("Level3.txt");
+//        fileSet.add("Level4_boss.txt");
         for (String file: fileSet) {
             importLevel(file);
         }
@@ -141,6 +143,11 @@ public class Journey {
             System.out.println();
             wait(1000);
             boolean result = startLevel(i+1);
+
+            /**
+             * handles if the user would like to try again if they
+             * have enough lives.
+             */
             if (result == false && lives > 0) {
                 printSlow("Total lives left: " + lives);
                 printSlow("Would you like to try again? [yes,no]");
@@ -151,12 +158,19 @@ public class Journey {
                     printSlow("Total lives: " + lives);
                 }
                 else {
-                    printSlow("Quitting...");
+                    printSlow("Game Over");
+                    i = listLevels.size();
                 }
             }
+            else if(result == false && lives == 0) {
+                printSlow("Game Over");
+                i = listLevels.size();
+            }
         }
-        System.out.println();
-        printSlow("Congradulations! You have beaten the game!");
+        if (lives > 0) {
+            System.out.println();
+            printSlow("Congradulations! You have beaten the game!");
+        }
     }
 
     public void printMap(int currLevel) {

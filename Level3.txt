@@ -1,0 +1,7 @@
+You have traversed the mountain and have reached
+there home. They are protected by a wall with guards
+patrolling. As you are trying to sneak in, some
+archers have spotted you...
+
+5 5 2 5 Archer_1 bow 5 5 Archer
+5 5 3 5 Archer_2 bow 5 5 Archer
