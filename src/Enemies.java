@@ -14,8 +14,15 @@ public class Enemies extends Players {
      */
     public Enemies (int health,int mana,int speed,int armor,String name,Weapons w,String t){
         super(health,mana,speed,armor,name,w);
-
         enemyType = t;
+    }
+    /**
+     * Copy constructor for enemy characters
+     * @param e - the enemy which you are copying
+     */
+    public Enemies(Enemies e){
+        super(e);
+        this.enemyType = e.getEnemyType();
     }
 
     /**
@@ -38,24 +45,20 @@ public class Enemies extends Players {
     //@Override
     public String getEnemyType() {return enemyType;}
 
-    public int criticalHit(int diceRoll) {
-        int damage;
-        if(diceRoll>=15){
-            damage = attack()*2;
-        }
-        else {
-            damage = attack();
-        }
-        return damage;
+    public int criticalHit(int dmg) {
+        int totalDmg = ((int)((double)dmg * 1.5));
+        return totalDmg;
     }
 
-    /**
-     * Copy constructor for enemy characters
-     * @param e - the enemy which you are copying
-     */
-    public Enemies(Enemies e){
-        super(e);
-        this.enemyType = e.getEnemyType();
-    }
+//    public int criticalHit(int diceRoll) {
+//        int damage;
+//        if(diceRoll>=15){
+//            damage = attack()*2;
+//        }
+//        else {
+//            damage = attack();
+//        }
+//        return damage;
+//    }
 }
 

@@ -32,7 +32,7 @@ public class Slime extends Players{
      */
     @Override
     int attack() {
-        return this.returnWeapon().rollForDamage();
+        return this.returnWeapon().rollForDamage() + returnWeapon().getWeaponStrength();
     }
 
     @Override
@@ -42,8 +42,9 @@ public class Slime extends Players{
 
     //TODO fix
     @Override
-    public int criticalHit(int diceRoll) {
-        return 1;
+    public int criticalHit(int dmg) {
+        int totalDmg = (int)(dmg * 1.5);
+        return totalDmg;
     }
     public int criticalHit(int diceRoll, int typeOfAttack) {
         int damage;
@@ -66,7 +67,7 @@ public class Slime extends Players{
      * This method is the special attack for the Slime which deals more than the basic attack
      * @return - the damage dealt by the special attack
      */
-    public int specialAttack(){ return (int) ((this.returnWeapon().rollForDamage())*1.5); }
+    public int specialAttack(){ return (int) ((this.returnWeapon().rollForDamage())*1.5 + returnWeapon().getWeaponStrength()); }
 
     public String getEnemyType() {
         return null;

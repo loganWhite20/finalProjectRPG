@@ -20,11 +20,11 @@ public class Wizard extends Enemies {
      * Fireball attack for the wizard
      * * @return - the amount of damage dealt
      */
-    public int fireball(){return this.returnWeapon().rollForDamage();}
+    public int fireball(){return this.returnWeapon().rollForDamage() + returnWeapon().getWeaponStrength();}
 
     /**
      * Lightning attack for the Wizard
      * @return - the amount of damage dealt
      */
-    public int lighting(){return (int) (fireball()*1.6);}
+    public int lighting(){return (int) (fireball()*1.6 + returnWeapon().getWeaponStrength());}
 }

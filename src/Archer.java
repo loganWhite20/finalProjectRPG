@@ -21,7 +21,7 @@ public class Archer extends Enemies {
      * @return - the amount of damage dealt
      */
     public int stab (){
-        int damage = this.returnWeapon().rollForDamage();
+        int damage = this.returnWeapon().rollForDamage() + returnWeapon().getWeaponStrength();
         if (damage >= 2) {//takes two damage off the attack if it's equal to 2 or more
             damage = damage - 2;
         }
@@ -32,5 +32,5 @@ public class Archer extends Enemies {
      * This method is for the long range attack of the Archer. Multiplies base attack by 1.8
      * @return - the amount of damage dealt
      */
-    public int shoot (){ return (int) ((this.returnWeapon().rollForDamage())*1.8); }
+    public int shoot (){ return (int) ((this.returnWeapon().rollForDamage())*1.8 + returnWeapon().getWeaponStrength()); }
 }
