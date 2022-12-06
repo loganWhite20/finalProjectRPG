@@ -49,6 +49,8 @@ public class Game extends Levels {
          */
         while (!gameFlag) {
             int input = 0;
+            int remove = -1;
+            boolean canRemove = false;
 
             for (Integer key : turnOrderSet) {
                 Players currentPlayer = turnOrder.get(key);
@@ -115,15 +117,10 @@ public class Game extends Levels {
                         if (chosenEnemy.getPlayerHealth() <= 0) {
                             printSlow(chosenEnemy.getName() + " has been knocked out.");
                             String name = chosenEnemy.getName();
-                            listEnemies.remove(input);
-                            int remove = -1;
-                            for(Integer i : turnOrderSet){
-                                if(turnOrder.get(i).getName().equals(name)){
-                                    remove = i;
-                                }
-                            }
-                            turnOrderSet.remove(remove);
-                            turnOrder.remove(remove);
+                            listEnemies.remove(chosenEnemy);
+                            turnOrder.get(chosenEnemy.getSpeed()).deadReturnType();
+                            remove = chosenEnemy.getSpeed();
+                            canRemove = true;
                         }
                     } else {
                         printSlow(SlimeHero.getName() + " missed.");
@@ -246,6 +243,10 @@ public class Game extends Levels {
                         break;
                     }
                 }
+            if (canRemove){
+                turnOrder.remove(remove);
+                turnOrderSet.remove(remove);
+            }
             }
         return result;
         }
