@@ -114,6 +114,8 @@ public abstract class Players {
 
     abstract String returnType();
 
+    abstract void deadReturnType();
+
     public String getName() {
         return name;
     }

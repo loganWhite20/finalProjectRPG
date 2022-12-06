@@ -3,6 +3,7 @@
  */
 public class Enemies extends Players {
     private String enemyType;
+    private String returnType;
     /**
      * Constructor for enemy players
      * @param health - amount of health to begin with
@@ -15,6 +16,7 @@ public class Enemies extends Players {
     public Enemies (int health,int mana,int speed,int armor,String name,Weapons w,String t){
         super(health,mana,speed,armor,name,w);
         enemyType = t;
+        returnType = "Enemy";
     }
     /**
      * Copy constructor for enemy characters
@@ -23,6 +25,7 @@ public class Enemies extends Players {
     public Enemies(Enemies e){
         super(e);
         this.enemyType = e.getEnemyType();
+        this.returnType = e.returnType;
     }
 
     /**
@@ -39,8 +42,14 @@ public class Enemies extends Players {
 
     @Override
     String returnType() {
-        return "Enemy";
+        return returnType;
     }
+
+    @Override
+    public void deadReturnType() {
+        returnType = "Dead";
+    }
+
 
     //@Override
     public String getEnemyType() {return enemyType;}

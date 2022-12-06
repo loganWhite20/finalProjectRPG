@@ -2,6 +2,7 @@
  * This is the class for the hero character.
  */
 public class Slime extends Players{
+    private String type;
     /**
      * This is the Constructor for the Slime character
      * @param health - the amount of health the Slime will start with
@@ -13,6 +14,7 @@ public class Slime extends Players{
      */
     public Slime(int health, int mana, int speed, int armor, String name, Weapons w) {
         super(health, mana, speed, armor, name, w);
+        type = "Slime";
     }
     public Slime(Slime other) {
         super(other.getMaxHealth(),other.getMaxMana(),other.getSpeed(),other.getArmorClass(),other.getName(),new Weapons(other.returnWeapon()));
@@ -37,7 +39,12 @@ public class Slime extends Players{
 
     @Override
     public String returnType() {
-        return "Slime";
+        return type;
+    }
+
+    @Override
+    public void deadReturnType() {
+        type = "Dead";
     }
 
     //TODO fix

@@ -42,14 +42,15 @@ public class Game extends Levels {
         System.out.println();
         printSlow("Beginning battle...");
 
-
+        setTurnOrder();
         /**
          * This loop should go through the turn order and take
          * a System.in input from users to take an action
          */
         while (!gameFlag) {
             int input = 0;
-            setTurnOrder();
+            int remove = -1;
+            boolean canRemove = false;
 
             for (Integer key : turnOrderSet) {
                 Players currentPlayer = turnOrder.get(key);
@@ -116,27 +117,20 @@ public class Game extends Levels {
                         if (chosenEnemy.getPlayerHealth() <= 0) {
                             printSlow(chosenEnemy.getName() + " has been knocked out.");
                             String name = chosenEnemy.getName();
-                            listEnemies.remove(input);
-                            int remove = -1;
-                            for(Integer i : turnOrderSet){
-                                if(turnOrder.get(i).getName().equals(name)){
-                                    remove = i;
-                                }
-                            }
-                            turnOrderSet.remove(remove);
-                            turnOrder.remove(remove);
+                            listEnemies.remove(chosenEnemy);
+                            turnOrder.get(chosenEnemy.getSpeed()).deadReturnType();
+                            remove = chosenEnemy.getSpeed();
+                            canRemove = true;
                         }
                     } else {
                         printSlow(SlimeHero.getName() + " missed.");
                     }
                     System.out.println();
                     //Slime hero heals
-                    if (currentPlayer.getPlayerHealth() != currentPlayer.getMaxHealth()) {
-                        int restoredHealth = SlimeHero.healthToRestore();
-                        SlimeHero.addHealth(restoredHealth);
-                        printSlow(SlimeHero.getName() + " healed " + restoredHealth + " health points. " +
-                                SlimeHero.getName() + " now has " + SlimeHero.returnHealth() + " health.");
-                    }
+                    int restoredHealth = SlimeHero.healthToRestore();
+                    SlimeHero.addHealth(restoredHealth);
+                    printSlow(SlimeHero.getName() + " healed " + restoredHealth + " health point(s). " +
+                            SlimeHero.getName() + " now has " + SlimeHero.returnHealth() + " health.");
                 }
 
                 // ENEMIES TURN
@@ -176,13 +170,33 @@ public class Game extends Levels {
                             damage = ((Wizard) currentPlayer).fireball();
                         }
                         else if (((Enemies) currentPlayer).getEnemyType().equals("Zuckerberg")) {//done
-                            damage = ((Zuckerberg) currentPlayer).digitalFury();
+                            damage = ((Zuckerberg) currentPlayer).roboticStare();
                         }
                         else {
                             damage = -1;
                         }
                     } else {
-                        damage = SlimeHero.specialAttack();
+                        if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {//done
+                            damage = ((Warrior) currentPlayer).attack();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Archer")) {//done
+                            damage = ((Archer) currentPlayer).shoot();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Giant")) {//done
+                            damage = ((Giant) currentPlayer).bash();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Thief")) {//done
+                            damage = ((Thief) currentPlayer).sneakAttack();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Wizard")) {//done
+                            damage = ((Wizard) currentPlayer).lighting();
+                        }
+                        else if (((Enemies) currentPlayer).getEnemyType().equals("Zuckerberg")) {//done
+                            damage = ((Zuckerberg) currentPlayer).digitalFury();
+                        }
+                        else {
+                            damage = -1;
+                        }
                     }
 
                     // THIS DECIDES WHO TO ATTACK WITH THE ACTION
@@ -229,6 +243,10 @@ public class Game extends Levels {
                         break;
                     }
                 }
+            if (canRemove){
+                turnOrder.remove(remove);
+                turnOrderSet.remove(remove);
+            }
             }
         return result;
         }
