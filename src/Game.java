@@ -112,8 +112,15 @@ public class Game extends Levels {
                     Enemies chosenEnemy = listEnemies.get(input);
                     printSlow(currentPlayer.getName() + " is attacking " + chosenEnemy.getName() + "...");
                     if (hitRoll >= chosenEnemy.getArmorClass()) {
-                        chosenEnemy.takeDamage(damage);
-                        printSlow(chosenEnemy.getName() + " took " + damage + " damage...");
+                        if (hitRoll == 20) {
+                            int crit = chosenEnemy.criticalHit(damage);
+                            chosenEnemy.takeDamage(crit);
+                            printSlow(chosenEnemy.getName() + " took " + damage + " damage... a critical hit!");
+                        }
+                        else {
+                            chosenEnemy.takeDamage(damage);
+                            printSlow(chosenEnemy.getName() + " took " + damage + " damage...");
+                        }
                         if (chosenEnemy.getPlayerHealth() <= 0) {
                             printSlow(chosenEnemy.getName() + " has been knocked out.");
                             String name = chosenEnemy.getName();
