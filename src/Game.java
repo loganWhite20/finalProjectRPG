@@ -20,10 +20,12 @@ public class Game extends Levels {
         turnOrder = new TreeMap<>();
         turnOrderSet = new HashSet<>();
         gameFlag = false;
+
         for (Enemies enemy : levelNumber.listEnemies) {
             turnOrder.put(enemy.getSpeed(), enemy);
             //listEnemies.add(newEnemy);
         }
+
         listPlayers = new ArrayList<>();
         SlimeHero = new Slime(user);
         listPlayers.add(SlimeHero);
@@ -230,7 +232,7 @@ public class Game extends Levels {
                         printSlow(currentPlayer.getName() + " is attacking " + listPlayers.get(input).getName() + "...");
 
                         int hitRoll = hitDice.rollDie();
-                        hitRoll = 20;
+//                        hitRoll = 20;
                         Players chosenPlayer = listPlayers.get(input);
                         if (hitRoll >= chosenPlayer.getArmorClass()) {
                             if (hitRoll == 20) {
