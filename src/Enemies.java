@@ -36,24 +36,25 @@ public class Enemies extends Players {
     int attack() {
         return 0;
     }
+    // special attack is not used here
     public int specialAttack() {
         return 0;
     }
-
+    // returns player type.
     @Override
     String returnType() {
         return returnType;
     }
-
+    // returns if player is dead
     @Override
     public void deadReturnType() {
         returnType = "Dead";
     }
 
 
-    //@Override
+    // returns enemy type.
     public String getEnemyType() {return enemyType;}
-
+    // critical damage action
     public int criticalHit(int dmg) {
         int totalDmg = ((int)((double)dmg * 1.5));
         return totalDmg;

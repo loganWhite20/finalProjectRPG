@@ -1,0 +1,5 @@
+*insert story stuff here*
+*insert more story as needed*
+
+(int health) (int mana) (int speed) (int armor) (String name) (String weaponName) (int weaponStrength) (int weaponDiceSides) (String enemyType)
+(int health) (int mana) (int speed) (int armor) (String name) (String weaponName) (int weaponStrength) (int weaponDiceSides) (String enemyType)

@@ -41,6 +41,76 @@ public class Journey {
     }
 
     /**
+     * This method will be initialized after creating a Journey class.
+     * The method will give the first story prompt, then navigate through the levels here.
+     * The story is essentially handled here.
+     */
+    public void journeyLoop() throws FileNotFoundException {
+
+        // Import files here
+        ArrayList<String> fileSet = new ArrayList<>();
+        fileSet.add("Level1.txt");
+        fileSet.add("Level2.txt");
+        fileSet.add("Level3.txt");
+        fileSet.add("Level4_boss.txt");
+        for (String file: fileSet) {
+            importLevel(file);
+        }
+
+        // Start journey here
+        Scanner scnr = new Scanner(System.in);
+        String input = null;
+        printSlow("Are you ready to begin your journey? [yes,no]");
+        input = scnr.next();
+        while (!input.equals("yes") && !input.equals("Yes") && !input.equals("YES") && !input.equals("y") && !input.equals("Y")) {
+            printSlow("Are you ready to begin your journey? [yes,no]");
+            input = scnr.next();
+        }
+        printSlow("Beginning your journey...");
+
+        // Selects which level to start
+        for (int i = 0; i < listLevels.size(); i++) {
+            printMap(i);
+            int num = i +1;
+            if (num < 10) {
+                printSlow("Starting level 0" + num + "...");
+            }
+            else {
+                printSlow("Starting level " + num + "...");
+            }
+            System.out.println();
+            wait(1000);
+            boolean result = startLevel(i+1);
+
+            //handles if the user would like to try again if they have enough lives
+            if (result == false && lives > 0) {
+                printSlow("Total lives left: " + lives);
+                printSlow("Would you like to try again? [yes,no]");
+                input = scnr.next();
+                if (input.equals("yes") || input.equals("Yes") || input.equals("YES") || input.equals("y") || input.equals("Y")) {
+                    i--;
+                    lives--;
+                    printSlow("Total lives: " + lives);
+                }
+                else {
+                    printSlow("Game Over");
+                    i = listLevels.size();
+                }
+            }
+            else if(result == false && lives == 0) {
+                printSlow("Game Over");
+                i = listLevels.size();
+            }
+        }
+
+        // prompts victory if met
+        if (lives > 0) {
+            System.out.println();
+            printSlow("You have defeated the leader of the lizardfolk and they have surrended. \nThe villagers have been saved and you have become their hero! \n\nCongradulations! You have beaten the game!");
+        }
+    }
+
+    /**
      * This method creates a game object and will run a level through the object.
      * @param levelNumber - the level the heroes are on.
      */
@@ -56,7 +126,6 @@ public class Journey {
      * @param fileName
      */
     public void importLevel(String fileName) throws FileNotFoundException {
-        // TODO COLTON MIDDAUGH
         File file = new File(fileName);
         Scanner scnr = new Scanner(file);
         StringBuilder story = new StringBuilder();
@@ -79,7 +148,7 @@ public class Journey {
             int weaponDiceSides = scan.nextInt();
             String enemyType = scan.next();
             Weapons testWeapon = new Weapons(weaponType,weaponStrength,weaponDiceSides);
-            //TODO throw if statements for type of enemy - Colton
+
             if(enemyType.equals("Warrior")){
                 Warrior enemy = new Warrior(health,mana,speed,armor,name, testWeapon,enemyType);
                 enemiesList.add(enemy);
@@ -109,87 +178,6 @@ public class Journey {
     }
 
     /**
-     * This method will be initialized after creating a Journey class.
-     * The method will give the first story prompt, then navigate through the levels here.
-     * The story is essentially handled here.
-     */
-    public void journeyLoop() throws FileNotFoundException {
-        // TODO CREATE METHOD LOGAN WHITE
-
-        /**
-         * Import files here
-         */
-        ArrayList<String> fileSet = new ArrayList<>();
-        fileSet.add("Level1.txt");
-        fileSet.add("Level2.txt");
-        fileSet.add("Level3.txt");
-        fileSet.add("Level4_boss.txt");
-        for (String file: fileSet) {
-            importLevel(file);
-        }
-
-        /**
-         * journey start prompt.
-         */
-        Scanner scnr = new Scanner(System.in);
-        String input = null;
-        printSlow("Are you ready to begin your journey? [yes,no]");
-        input = scnr.next();
-        while (!input.equals("yes") && !input.equals("Yes") && !input.equals("YES") && !input.equals("y") && !input.equals("Y")) {
-            printSlow("Are you ready to begin your journey? [yes,no]");
-            input = scnr.next();
-        }
-        printSlow("Beginning your journey...");
-
-        /**
-         * cycles through which levels to start.
-         */
-        for (int i = 0; i < listLevels.size(); i++) {
-            printMap(i);
-            int num = i +1;
-            if (num < 10) {
-                printSlow("Starting level 0" + num + "...");
-            }
-            else {
-                printSlow("Starting level " + num + "...");
-            }
-            System.out.println();
-            wait(1000);
-            boolean result = startLevel(i+1);
-
-            /**
-             * handles if the user would like to try again if they
-             * have enough lives.
-             */
-            if (result == false && lives > 0) {
-                printSlow("Total lives left: " + lives);
-                printSlow("Would you like to try again? [yes,no]");
-                input = scnr.next();
-                if (input.equals("yes") || input.equals("Yes") || input.equals("YES") || input.equals("y") || input.equals("Y")) {
-                    i--;
-                    lives--;
-                    printSlow("Total lives: " + lives);
-                }
-                else {
-                    printSlow("Game Over");
-                    i = listLevels.size();
-                }
-            }
-            else if(result == false && lives == 0) {
-                printSlow("Game Over");
-                i = listLevels.size();
-            }
-        }
-        /**
-         * prompts victory if met.
-         */
-        if (lives > 0) {
-            System.out.println();
-            printSlow("Congradulations! You have beaten the game!");
-        }
-    }
-
-    /**
      * prints the map of levels the user will go through.
      * a box indicates it has not been completed, and an
      * X indicates the user has completed the level.
@@ -203,20 +191,16 @@ public class Journey {
         System.out.println("Map:");
         for (int i = 0; i < listLevels.size(); i++) {
             if (i >= currLevel) {
-
                     text1 += "-----";
                     text2 += "  _  ";
                     text3 += " |_| ";
                     text4 += "  " + (i + 1) + "  ";
-
             }
             else {
-
                 text1 += "-----";
                 text2 += "     ";
                 text3 += "  X  ";
                 text4 += "  " + (i + 1) + "  ";
-
             }
         }
         text2 += "|";

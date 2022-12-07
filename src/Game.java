@@ -37,7 +37,7 @@ public class Game extends Levels {
      */
     public boolean run() {
         boolean result = false;
-        // TODO LOGAN WHITE & BEN ANASTASI
+
         printSlow(storyPrompt);
         System.out.println();
         printSlow("Beginning battle...");
@@ -74,7 +74,7 @@ public class Game extends Levels {
                         } catch (IllegalArgumentException e) {
                             System.out.println("Incorrect input");
                         }
-                    }
+                    } // End of deciding action.
 
                     //THIS CALCULATES DAMAGE FOR DECISION
                     int damage;
@@ -105,22 +105,22 @@ public class Game extends Levels {
                         } catch (IllegalArgumentException e) {
                             System.out.println("Illegal argument.");
                         }
-                    }
+                    } // End of decision to attack.
 
                     // THIS BLOCK DELIVERS THE RESULTS
                     int hitRoll = hitDice.rollDie();
                     Enemies chosenEnemy = listEnemies.get(input);
                     printSlow(currentPlayer.getName() + " is attacking " + chosenEnemy.getName() + "...");
                     if (hitRoll >= chosenEnemy.getArmorClass()) {
-                        if (hitRoll == 20) {
+                        if (hitRoll == 20) { // critical hit
                             int crit = chosenEnemy.criticalHit(damage);
                             chosenEnemy.takeDamage(crit);
                             printSlow(chosenEnemy.getName() + " took " + damage + " damage... a critical hit!");
-                        } else {
+                        } else { // normal hit
                             chosenEnemy.takeDamage(damage);
                             printSlow(chosenEnemy.getName() + " took " + damage + " damage...");
                         }
-                        if (chosenEnemy.getPlayerHealth() <= 0) {
+                        if (chosenEnemy.getPlayerHealth() <= 0) { // if enemy is beaten
                             printSlow(chosenEnemy.getName() + " has been knocked out.");
                             String name = chosenEnemy.getName();
                             listEnemies.remove(chosenEnemy);
@@ -128,9 +128,9 @@ public class Game extends Levels {
                             remove = chosenEnemy.getSpeed();
                             canRemove = true;
                         }
-                    } else {
+                    } else { // missed attack
                         printSlow(SlimeHero.getName() + " missed.");
-                    }
+                    } // End of final results from turn.
                     System.out.println();
                     //Slime hero heals
                     if (currentPlayer.getPlayerHealth() <= currentPlayer.getMaxHealth() * .95) {
@@ -139,7 +139,7 @@ public class Game extends Levels {
                         printSlow(SlimeHero.getName() + " healed " + restoredHealth + " health point(s). " +
                                 SlimeHero.getName() + " now has " + SlimeHero.returnHealth() + " health.");
                     }
-                }
+                } // End of Slimes turn
 
                 // ENEMIES TURN
                 if (currentPlayer.returnType().equals("Enemy")) {//turn for enemy
@@ -152,6 +152,7 @@ public class Game extends Levels {
                     Random generator = new Random();
                     int action = generator.nextInt(21);
 
+                    // more likely to use action 1.
                     if (action < 15) {
                         input = 1;
                     } else {
@@ -159,10 +160,9 @@ public class Game extends Levels {
                     }
 
                     //THIS CALCULATES DAMAGE FOR DECISION
-                    //TODO GET THE ENEMY ACTIONS HERE
                     int damage = 0;
                     int heal = 0;
-                    if (input == 1) {
+                    if (input == 1) { // action 1 for each enemy
                         if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {//done
                             damage = ((Warrior) currentPlayer).attack();
                         } else if (((Enemies) currentPlayer).getEnemyType().equals("Archer")) {//done
@@ -180,7 +180,7 @@ public class Game extends Levels {
                         } else {
                             damage = -1;
                         }
-                    } else {
+                    } else { // action 2 for every enemy.
                         if (((Enemies) currentPlayer).getEnemyType().equals("Warrior")) {//done
                             damage = ((Warrior) currentPlayer).specialAttack();
                         } else if (((Enemies) currentPlayer).getEnemyType().equals("Archer")) {//done
@@ -198,7 +198,7 @@ public class Game extends Levels {
                         } else {
                             damage = -1;
                         }
-                    }
+                    } // end of action decision.
 
                     // THIS BLOCK DELIVERS THE RESULTS
 
@@ -206,7 +206,7 @@ public class Game extends Levels {
                      * priest decision-making.
                      */
                     if (((Enemies) currentPlayer).getEnemyType().equals("Priest")) {
-                        // THIS DECIDES WHO TO Heal WITH THE ACTION
+                        // THIS DECIDES WHO TO HEAL WITH THE ACTION ONLY PRIEST ACTION
                         double minHealth = 1;
                         int index = 0;
                         for (Enemies enemy : listEnemies) {
@@ -248,8 +248,9 @@ public class Game extends Levels {
                         }
                         System.out.println();
                     }
-                }
+                } // END OF ENEMY TURN.
 
+                // win condition
                 if (listEnemies.size() == 0) {
                     System.out.println();
                     printSlow("The enemies have been vanquished!");
@@ -257,6 +258,7 @@ public class Game extends Levels {
                     gameFlag = true;
                     break;
                 }
+                // lose condition
                 if (listPlayers.size() == 0) {
                     printSlow("You have fallen...");
                     result = false;

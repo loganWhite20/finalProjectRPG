@@ -37,17 +37,18 @@ public class Slime extends Players{
         return this.returnWeapon().rollForDamage() + returnWeapon().getWeaponStrength();
     }
 
+    // returns type "Slime" for run() loop in the game class.
     @Override
     public String returnType() {
         return type;
     }
 
+    // returns type "Dead"
     @Override
     public void deadReturnType() {
         type = "Dead";
     }
 
-    //TODO fix
     @Override
     public int criticalHit(int dmg) {
         int totalDmg = (int)(dmg * 1.5);
@@ -77,6 +78,7 @@ public class Slime extends Players{
     public int specialAttack(){ return (int) ((this.returnWeapon().rollForDamage())*1.5 + returnWeapon().getWeaponStrength()); }
 
 
+    // returns enemy type which is null.
     public String getEnemyType() {
         return null;
     }

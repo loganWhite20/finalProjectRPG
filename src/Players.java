@@ -112,10 +112,13 @@ public abstract class Players {
      */
     abstract int attack();
 
+    // returns player type
     abstract String returnType();
 
+    // returns if the player is dead
     abstract void deadReturnType();
 
+    // getters
     public String getName() {
         return name;
     }
@@ -128,10 +131,11 @@ public abstract class Players {
     public int getArmorClass() {
         return armorClass;
     }
-
     public int returnHealth(){
         return playerHealth;
     }
+    // critical damage action
     public abstract int criticalHit(int dmg);
+    // special attack action
     public abstract int specialAttack();
 }
