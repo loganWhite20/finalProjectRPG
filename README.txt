@@ -1,0 +1,1 @@
+The class to run the game is SlimeHeroRPG.java
