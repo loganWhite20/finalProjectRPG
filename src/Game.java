@@ -229,16 +229,19 @@ public class Game extends Levels {
                         printSlow(currentPlayer.getName() + " is attacking " + listPlayers.get(input).getName() + "...");
 
                         int hitRoll = hitDice.rollDie();
-                        if (hitRoll >= listPlayers.get(input).getArmorClass()) {
+                        hitRoll = 20;
+                        Players chosenPlayer = listPlayers.get(input);
+                        if (hitRoll >= chosenPlayer.getArmorClass()) {
                             if (hitRoll == 20) {
-                                int crit = listPlayers.get(input).criticalHit(damage);
-                                printSlow(listPlayers.get(input).getName() + " took " + crit + " damage... a critical hit!");
+                                int crit = chosenPlayer.criticalHit(damage);
+                                chosenPlayer.takeDamage(crit);
+                                printSlow(chosenPlayer.getName() + " took " + crit + " damage... a critical hit!");
                             } else {
-                                listPlayers.get(input).takeDamage(damage);
-                                printSlow(listPlayers.get(input).getName() + " took " + damage + " damage.");
+                                chosenPlayer.takeDamage(damage);
+                                printSlow(chosenPlayer.getName() + " took " + damage + " damage.");
                             }
-                            if (listPlayers.get(input).getPlayerHealth() <= 0) {
-                                printSlow(listPlayers.get(input).getName() + " has been knocked out.");
+                            if (chosenPlayer.getPlayerHealth() <= 0) {
+                                printSlow(chosenPlayer.getName() + " has been knocked out.");
                                 listPlayers.remove(input);
                                 turnOrderSet.remove(input);
                                 turnOrder.remove(input);

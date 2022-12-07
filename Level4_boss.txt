@@ -3,5 +3,5 @@ town. You have broken your way through and have
 managed to reach the leader... this is your last
 stand to save the villagers...
 
-5 5 2 5 Mark_Zuckerberg Staff 5 5 Wizard
-5 5 5 5 Priest Staff 5 5 Priest
+20 5 12 10 Mark_Zuckerberg Staff 5 5 Wizard
+15 5 10 8 Priest Staff 5 5 Priest

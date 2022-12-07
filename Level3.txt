@@ -3,5 +3,5 @@ their home. They are protected by a wall with guards
 patrolling. As you are trying to sneak in, some
 archers have spotted you...
 
-5 5 2 5 Archer_1 bow 5 5 Archer
-5 5 3 5 Archer_2 bow 5 5 Archer
+10 5 14 6 Archer_1 bow 5 8 Archer
+10 5 13 6 Archer_2 bow 5 8 Archer

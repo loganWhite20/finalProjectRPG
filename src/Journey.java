@@ -37,7 +37,7 @@ public class Journey {
     // Constructor
     public Journey() {
         listLevels = new ArrayList<>();
-        userCharacter = new Slime(30,10,10,10,"Slime Hero", new Weapons("Sword",5,8));
+        userCharacter = new Slime(30,10,11,10,"Slime Hero", new Weapons("Sword",5,8));
     }
 
     /**
@@ -49,9 +49,9 @@ public class Journey {
 
         // Import files here
         ArrayList<String> fileSet = new ArrayList<>();
-//        fileSet.add("Level1.txt");
-//        fileSet.add("Level2.txt");
-//        fileSet.add("Level3.txt");
+        fileSet.add("Level1.txt");
+        fileSet.add("Level2.txt");
+        fileSet.add("Level3.txt");
         fileSet.add("Level4_boss.txt");
         for (String file: fileSet) {
             importLevel(file);
@@ -95,6 +95,7 @@ public class Journey {
                 else {
                     printSlow("Game Over");
                     i = listLevels.size();
+                    lives = 0;
                 }
             }
             else if(result == false && lives == 0) {

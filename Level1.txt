@@ -7,5 +7,5 @@ your village...
 
 On the start of your journey, you come across two enemies...
 
-5 5 2 5 Grunt_1 sword 5 5 Warrior
-5 5 3 5 Grunt_2 sword 5 5 Warrior
+15 5 10 6 Grunt_1 sword 5 5 Warrior
+15 5 9 6 Grunt_2 sword 5 5 Warrior
