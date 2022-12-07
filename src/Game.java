@@ -48,10 +48,11 @@ public class Game extends Levels {
          * a System.in input from users to take an action
          */
         while (!gameFlag) {
-            int input = 0;
-            int remove = -1;
-            boolean canRemove = false;
+            int input = 0;  // scanner system.in input
+            int remove = -1;    // used for removing a player from the turn order
+            boolean canRemove = false; // flag for removing a player from the turn order
 
+            //cycles through turns here.
             for (Integer key : turnOrderSet) {
                 Players currentPlayer = turnOrder.get(key);
 
