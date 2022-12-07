@@ -125,7 +125,7 @@ public class Game extends Levels {
                             printSlow(chosenEnemy.getName() + " has been knocked out.");
                             String name = chosenEnemy.getName();
                             listEnemies.remove(chosenEnemy);
-                            turnOrder.get(chosenEnemy.getSpeed()).deadReturnType();
+                            turnOrder.get(chosenEnemy.getSpeed()).deadReturnType(); // removing them from turn order
                             remove = chosenEnemy.getSpeed();
                             canRemove = true;
                         }
